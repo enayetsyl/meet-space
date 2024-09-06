@@ -19,12 +19,12 @@ Our platform is designed to provide a seamless and intuitive experience for user
     - **For Authenticated Users:** My Bookings, Logout.
     - **For Admins:** Dashboard, Logout.
 
-- **Hero Section:**
+<!-- - **Hero Section:**
   - **Visual Appeal:** Large banner image or video of a modern workspace.
   - **Headline & Subheadline:** 
     - Headline: "Book Your Ideal Meeting Room with Ease."
     - Subheadline: "Efficient, hassle-free room booking for all your meeting needs."
-  - **CTA Button:** "Book Now" redirects to the Meeting Rooms page.
+  - **CTA Button:** "Book Now" redirects to the Meeting Rooms page. -->
 
 - **Service Advertisement Section:**
   - **Highlighted Services:** Real-Time Availability, Instant Booking Confirmation, Flexible Scheduling, 24/7 Support.
