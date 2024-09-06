@@ -43,8 +43,8 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <nav className="p-4 bg-white md:bg-transparent h-20 md:h-28 relative z-50">
-      <div className="flex items-center  justify-around">
+    <nav className=" bg-white md:bg-transparent h-20 md:h-28 relative z-50">
+      <div className="flex items-center  justify-between px-5  md:px-20 py-5">
         <div>
           <NavLink
             to="/"

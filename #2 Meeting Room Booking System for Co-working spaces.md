@@ -26,8 +26,8 @@ Our platform is designed to provide a seamless and intuitive experience for user
     - Subheadline: "Efficient, hassle-free room booking for all your meeting needs."
   - **CTA Button:** "Book Now" redirects to the Meeting Rooms page. -->
 
-- **Service Advertisement Section:**
-  - **Highlighted Services:** Real-Time Availability, Instant Booking Confirmation, Flexible Scheduling, 24/7 Support.
+<!-- - **Service Advertisement Section:**
+  - **Highlighted Services:** Real-Time Availability, Instant Booking Confirmation, Flexible Scheduling, 24/7 Support. -->
 
 - **Featured Rooms Section:**
   - **Room Cards:** 
