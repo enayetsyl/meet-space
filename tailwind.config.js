@@ -4,9 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        customBlue: '#1e40af', // Replace this with your desired custom color code
-        customGray: '#6b7280',
-        customGreen: '#10b981',
+        customGreen: '#35BC23', 
+        customOrange: '#f3b007',
+        customBlue: '#1c11f3',
+        footerBg: '#04172e'
       },
     },
   },
