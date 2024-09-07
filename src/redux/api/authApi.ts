@@ -13,8 +13,14 @@ export const authApi = createApi({
         body: user,
       }),
     }),
-    // You can add more auth-related endpoints here (e.g., login)
+    login: builder.mutation({
+      query: (user) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body: user,
+      }),
+    })
   }),
 });
 
-export const { useSignupMutation } = authApi;
+export const { useSignupMutation, useLoginMutation } = authApi;

@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import {  Link, useNavigate } from "react-router-dom";
-import { useSignupMutation } from "../../../redux/api/authApi";
+import { useLoginMutation } from "../../../redux/api/authApi";
 import toast from "react-hot-toast";
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    phone: "",
-    address: "",
-    role:"user"
+  
   });
   const navigate = useNavigate();
 
   const [emailError, setEmailError] = useState("");
-  const [signup, { isLoading, isSuccess, isError }] = useSignupMutation();
+  const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
 
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,32 +43,22 @@ const SignUpForm = () => {
 
     // Perform signup request
     try {
-      const result = await signup(formData).unwrap(); // API call
-      console.log("Signup successful: ", result);
-      navigate("/login");
-      toast.success("Signup successful. Please login.");
+      const result = await login(formData).unwrap(); // API call
+      sessionStorage.setItem("token", result.token);
+      navigate("/");
+      toast.success("Login successful.");
       
     } catch (error) {
-      console.error("Signup failed: ", error);
-      toast.error("Signup failed. Please try again.");
+      console.error("Login failed: ", error);
+      toast.error("Login failed. Please try again.");
     }
   };
 
   return (
     <div className="bg-gradient-to-r from-[#4d71da] to-[#6E6EE2] px-5 w-full py-5">
-      <h1 className="text-3xl font-bold mb-4 text-center text-white">Signup</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center text-white">Login</h1>
       <form onSubmit={handleSubmit}>
-        {/* Name Field */}
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleInputChange}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-          required
-        />
-
+       
         {/* Email Field */}
         <input
           type="email"
@@ -95,44 +82,22 @@ const SignUpForm = () => {
           required
         />
 
-        {/* Phone Field */}
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number"
-          value={formData.phone}
-          onChange={handleInputChange}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-          required
-        />
-
-        {/* Address Field */}
-        <input
-          type="text"
-          name="address"
-          placeholder="Address"
-          value={formData.address}
-          onChange={handleInputChange}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-          required
-        />
-
         {/* Submit Button */}
         <button
           type="submit"
           className="hover:bg-white text-white p-2 w-full rounded border border-white hover:text-black"
           disabled={isLoading}
         >
-          {isLoading ? "Signing Up..." : "Sign Up"}
+          {isLoading ? "Logging..." : "Login"}
         </button>
       </form>
-      <p className="text-center text-white pt-5">Already have an account. <Link to="/login"><span className="underline text-customOrange">Login</span></Link>
+      <p className="text-center text-white pt-5">Do not have an account. <Link to="/sign-up"><span className="underline text-customOrange">Sign Up</span></Link>
       </p>
       {/* Success and Error Feedback */}
-      {isSuccess && <p className="text-customOrange mt-4">Signup successful!</p>}
-      {isError && <p className="text-red-500 mt-4">Signup failed. Please try again.</p>}
+      {isSuccess && <p className="text-customOrange mt-4">Login successful!</p>}
+      {isError && <p className="text-red-500 mt-4">Login failed. Please try again.</p>}
     </div>
   );
 };
 
-export default SignUpForm;
+export default LoginForm;
