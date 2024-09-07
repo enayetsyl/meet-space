@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { roomApi } from "./api/roomApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { authApi } from "./api/authApi";
 
 const store = configureStore({
   reducer: {
     [roomApi.reducerPath]: roomApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
- middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(roomApi.middleware),
+ middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(roomApi.middleware, authApi.middleware),
 });
 
 setupListeners(store.dispatch);

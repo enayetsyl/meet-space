@@ -68,13 +68,13 @@ Our platform is designed to provide a seamless and intuitive experience for user
 
 **5. User Authentication Pages**
 
-- **Sign Up Page:**
+<!-- - **Sign Up Page:**
     - **Form Fields:** Name, email, password, phone number, address.
     - By default, every user will have the "USER" role. Initially, there should be an admin in the database. Later, that admin can promote a user to the "ADMIN" role.
     - **Functionality:**
         - Allows users to create a new account.
         - Form validation (e.g., correct email format).
-        - Displays success or error messages based on the outcome.
+        - Displays success or error messages based on the outcome. -->
 - **Login Page:**
     - **Form Fields:** Email, password.
     - **Functionality:** Login, token-based authentication, proper error messages.
