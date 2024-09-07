@@ -42,10 +42,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
   <!-- - **Customer Testimonials Section:**
     - Carousel with customer profile pictures, names, roles, and testimonials. -->
 
-- **Footer Section:**
+<!-- - **Footer Section:**
   - **Contact Information:** Email, phone number, office address.
   - **Social Media Links:** Clickable icons.
-  - **Additional Links:** Privacy Policy, Terms of Service.
+  - **Additional Links:** Privacy Policy, Terms of Service. -->
 
 **2. About Us Page**
 - **Design Elements:** 

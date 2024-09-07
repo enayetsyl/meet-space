@@ -10,7 +10,7 @@ const Footer = () => {
  
 
   return (
-    <div className="bg-footerBg text-white px-5 md:px-20 py-16 flex flex-col md:flex-row justify-between gap-10">
+    <div className="bg-footerBg text-white px-20 py-24 flex flex-col md:flex-row md:justify-between justify-center md:items-start gap-10">
       <div className="flex flex-col justify-start items-start space-y-5">
         <h2 className="text-2xl font-bold ">Contact Information</h2>
         <p>
