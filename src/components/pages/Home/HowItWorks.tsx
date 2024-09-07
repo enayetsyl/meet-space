@@ -3,7 +3,7 @@ import HowCard from "./HowCard"
 
 const HowItWorks = () => {
   return (
-    <div className="bg-white pB-32 px-5 md:px-20">
+    <div className="bg-white pb-32 px-5 md:px-20">
        <h1 className="text-customOrange text-3xl md:text-6xl font-bold  uppercase  text-center leading-tight md:leading-snug py-20">
        How It Works
       </h1>

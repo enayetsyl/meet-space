@@ -23,9 +23,21 @@ import why7 from "../../public/why-7.jpg"
 import why8 from "../../public/why-8.jpg"
 import why9 from "../../public/why-9.jpg"
 import why10 from "../../public/why-10.jpg"
+
 import how1 from "../../public/step1.jpg"
 import how2 from "../../public/step2.jpg"
 import how3 from "../../public/step3.jpg"
+
+import user1 from "../../public/user1.jpg"
+import user2 from "../../public/user2.jpg"
+import user3 from "../../public/user3.jpg"
+import user4 from "../../public/user4.jpg"
+import user5 from "../../public/user5.jpg"
+import user6 from "../../public/user6.jpg"
+import user7 from "../../public/user7.jpg"
+
+
+
 
 export const navItems = [
   { name: 'Home', path: '/' },
@@ -76,3 +88,55 @@ export const howItWorks = [
   {id: 2, title: "Step 2: Choose Date & Time", image: how2},
   {id: 3, title: "Step 3: Confirm Booking", image: how3},
 ]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: "John Doe",
+    role: "CEO, Company A",
+    testimonial: "This service is fantastic! It has made our booking process so seamless.",
+    image: user1,
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    role: "Marketing Manager, Company B",
+    testimonial: "I highly recommend this platform. The real-time availability feature is a game-changer!",
+    image: user2,
+  },
+  {
+    id: 3,
+    name: "Michael Johnson",
+    role: "Event Planner, Company C",
+    testimonial: "Their support team is amazing. They made sure our event went smoothly!",
+    image: user3,
+  },
+  {
+    id: 4,
+    name: "Emily Davis",
+    role: "Operations Manager, Company D",
+    testimonial: "The platform is easy to use, and the instant booking confirmation helps us plan quickly.",
+    image: user4,
+  },
+  {
+    id: 5,
+    name: "David Brown",
+    role: "CTO, Startup E",
+    testimonial: "Flexible scheduling and top-notch support. This service has made managing our meetings a breeze!",
+    image: user5,
+  },
+  {
+    id: 6,
+    name: "Olivia Wilson",
+    role: "HR Manager, Company F",
+    testimonial: "The 24/7 assistance provided is amazing. We felt supported throughout our entire experience.",
+    image: user6,
+  },
+  {
+    id: 7,
+    name: "Sophia Martinez",
+    role: "Freelancer, Self-Employed",
+    testimonial: "As a freelancer, booking meeting spaces has never been easier. Highly recommended!",
+    image: user7,
+  },
+];
