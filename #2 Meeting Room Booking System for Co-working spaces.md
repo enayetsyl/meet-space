@@ -47,13 +47,13 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Social Media Links:** Clickable icons.
   - **Additional Links:** Privacy Policy, Terms of Service. -->
 
-**2. About Us Page**
+<!-- **2. About Us Page**
 - **Design Elements:** 
   - Creative presentation with animations and visuals.
 - **Content Sections:**
   - **Our Mission:** Purpose and goals.
   - **Meet the Team:** Team member images and bios.
-  - **Our Story:** Background and evolution.
+  - **Our Story:** Background and evolution. -->
 
 **3. Contact Us Page**
 - **Contact Information:** 

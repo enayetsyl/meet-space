@@ -9,7 +9,20 @@ export default {
         customBlue: '#1c11f3',
         footerBg: '#04172e'
       },
+      backgroundImage: {
+        'gradient-custom': 'linear-gradient(90deg, #FF8800, #00FF88)',
+      },
+      animation: {
+        'float-from-top': 'floatFromTop 1.5s ease-out forwards',
+      },
+      keyframes: {
+        floatFromTop: {
+          '0%': { transform: 'translateY(-50px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
     },
+
   },
   plugins: [],
 }
