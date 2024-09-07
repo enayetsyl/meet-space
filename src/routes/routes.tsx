@@ -13,11 +13,13 @@ import RoomDetails from "../pages/public/RoomDetails";
 import Checkout from "../pages/public/Checkout";
 import RoomManagement from "../pages/admin/RoomManagement";
 import SlotsManagement from "../pages/admin/SlotsManagement";
+import Error404 from "../pages/public/Error404";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <PublicLayout/>,
+    errorElement: <Error404/>,
     children:[
       {
         path: "/", element: <Home/>

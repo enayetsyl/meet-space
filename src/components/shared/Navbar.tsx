@@ -1,9 +1,3 @@
-import { FaCartArrowDown, FaRegEnvelope, FaTwitter } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import { ImFacebook } from "react-icons/im";
-import { IoMdArrowUp, IoMdSearch } from "react-icons/io";
-import { IoCall } from "react-icons/io5";
-import { RiInstagramLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { navItems } from "../../constant";
 import { GiHamburgerMenu } from "react-icons/gi";

@@ -55,16 +55,16 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Meet the Team:** Team member images and bios.
   - **Our Story:** Background and evolution. -->
 
-**3. Contact Us Page**
+<!-- **3. Contact Us Page**
 - **Contact Information:** 
   - Email, phone number, office address.
 - **Contact Form:**
   - **Form Fields:** Name, email, subject, message.
-  - Basic animations for form elements.
+  - Basic animations for form elements. -->
 
-**4. Error Pages**
+<!-- **4. Error Pages**
 - **Features:** Custom 404 page for non-existent routes.
-- **Functionality:** Navigation options to guide users back to safe pages (e.g., Home, Login).
+- **Functionality:** Navigation options to guide users back to safe pages (e.g., Home, Login). -->
 
 **5. User Authentication Pages**
 
