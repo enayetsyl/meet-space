@@ -35,10 +35,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **See More Button:** Redirects to the Meeting Rooms page. -->
 
 - **Extra Sections:**
-  - **Why Choose Us?:** Highlights features like "Seamless Booking Experience" and "Secure Transactions."
+  <!-- - **Why Choose Us?:** Highlights features like "Seamless Booking Experience" and "Secure Transactions."
   - **How It Works Section:**
     - Steps: Select a Room, Choose Date & Time, Confirm Booking.
-    - Icons/Illustrations for each step.
+    - Icons/Illustrations for each step. -->
   - **Customer Testimonials Section:**
     - Carousel with customer profile pictures, names, roles, and testimonials.
 

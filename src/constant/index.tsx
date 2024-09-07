@@ -23,6 +23,9 @@ import why7 from "../../public/why-7.jpg"
 import why8 from "../../public/why-8.jpg"
 import why9 from "../../public/why-9.jpg"
 import why10 from "../../public/why-10.jpg"
+import how1 from "../../public/step1.jpg"
+import how2 from "../../public/step2.jpg"
+import how3 from "../../public/step3.jpg"
 
 export const navItems = [
   { name: 'Home', path: '/' },
@@ -66,4 +69,10 @@ export const whyUsData = [
   {id: 8, title: "Event Plan Help", description: "Our team can assist you in planning and organizing your events, from catering to audiovisual equipment.", image: why8},
   {id: 9, title: "Feedback & Reviews", description: "Read what our satisfied clients have to say about their experiences with our meeting rooms.", image: why9},
   {id: 10, title: "Superfast Wi-Fi", description: "Enjoy lightning-fast internet connectivity for smooth and efficient collaboration.",  image: why10},
+]
+
+export const howItWorks = [
+  {id: 1, title: "Step 1: Select a Room", image: how1},
+  {id: 2, title: "Step 2: Choose Date & Time", image: how2},
+  {id: 3, title: "Step 3: Confirm Booking", image: how3},
 ]

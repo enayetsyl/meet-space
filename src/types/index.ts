@@ -33,3 +33,12 @@ export type WhyUs = {
   description: string;
   image: string;
 };
+
+export type HowCardProps = {
+  how: {
+    id: number;
+    title: string;
+    image: string;
+  };
+  index: number;
+}
