@@ -75,14 +75,14 @@ Our platform is designed to provide a seamless and intuitive experience for user
         - Allows users to create a new account.
         - Form validation (e.g., correct email format).
         - Displays success or error messages based on the outcome. -->
-- **Login Page:**
+<!-- - **Login Page:**
     - **Form Fields:** Email, password.
     - **Functionality:** Login, token-based authentication, proper error messages.
-    - **Please make sure to provide the admin login credentials when submitting the assignment.** 
+    - **Please make sure to provide the admin login credentials when submitting the assignment.**  -->
  
 **6. Meeting Rooms Page**
 - **Room Listings:**
-  - **Card View Display:** Image, Room Name, Capacity, Price Per Slot, "See Details" Button.
+  <!-- - **Card View Display:** Image, Room Name, Capacity, Price Per Slot, "See Details" Button. -->
   - **Search Functionality:**
     - **Search Bar:** Search by room name or keyword.
     - **Filtering Options:** Capacity, Price.
