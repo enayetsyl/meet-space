@@ -13,6 +13,16 @@ import meeting7 from "../../public/meeting-7.jpg"
 import meeting8 from "../../public/meeting-8.jpg"
 import meeting9 from "../../public/meeting-9.png"
 import meeting10 from "../../public/meeting-10.jpg"
+import why1 from "../../public/why-1.jpg"
+import why2 from "../../public/why-2.jpg"
+import why3 from "../../public/why-3.jpg"
+import why4 from "../../public/why-4.png"
+import why5 from "../../public/why-5.png"
+import why6 from "../../public/why-6.png"
+import why7 from "../../public/why-7.jpg"
+import why8 from "../../public/why-8.jpg"
+import why9 from "../../public/why-9.jpg"
+import why10 from "../../public/why-10.jpg"
 
 export const navItems = [
   { name: 'Home', path: '/' },
@@ -43,4 +53,17 @@ export const meetingImages = [
   {id: 8, image: meeting8},
   {id: 9, image: meeting9},
   {id: 10, image: meeting10},
+]
+
+export const whyUsData = [
+  {id: 1, title: "Convenient Location", description: "Our meeting rooms are conveniently located in the heart of the city, making them easily accessible for your team.", image: why1},
+  {id: 2, title: "Equip & Amenities", description: "We provide top-of-the-line equipment and amenities to enhance your meeting experience.", image: why2},
+  {id: 3, title: "Professional Support", description: "Our friendly and knowledgeable staff is here to assist you with any requirements or inquiries you may have.", image: why3},
+  {id: 4, title: "Secure & Safe", description: "Your privacy and security are our top priorities. We take measures to ensure a safe and secure environment for your meetings.", image: why4},
+  {id: 5, title: "Flexible Booking", description: "Book your meeting room in advance or on the same day, depending on your needs.", image: why5},
+  {id: 6, title: "Affordable Pricing", description: "We offer competitive pricing for our meeting rooms, ensuring you get the best value for your investment.", image: why6},
+  {id: 7, title: "Customizable Rooms", description: "Choose from a variety of room sizes and configurations to suit your specific requirements.",   image: why7},
+  {id: 8, title: "Event Plan Help", description: "Our team can assist you in planning and organizing your events, from catering to audiovisual equipment.", image: why8},
+  {id: 9, title: "Feedback & Reviews", description: "Read what our satisfied clients have to say about their experiences with our meeting rooms.", image: why9},
+  {id: 10, title: "Superfast Wi-Fi", description: "Enjoy lightning-fast internet connectivity for smooth and efficient collaboration.",  image: why10},
 ]

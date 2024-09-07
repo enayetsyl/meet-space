@@ -27,3 +27,9 @@ export type MeetingImages = {
   id: number;
   image: string;
 };
+export type WhyUs = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};

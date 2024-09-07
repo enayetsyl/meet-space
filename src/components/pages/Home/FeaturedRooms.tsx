@@ -15,7 +15,7 @@ const FeaturedRooms = () => {
 
   console.log('rooms', rooms);
   return (
-    <div className="px-5 md:px-20 bg-white">
+    <div className="px-5 md:px-20 bg-white pb-32">
       <h1 className="text-customOrange text-3xl md:text-6xl font-bold  uppercase  text-center leading-tight md:leading-snug py-20">
        featured room
         </h1>
