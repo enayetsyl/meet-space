@@ -34,13 +34,13 @@ Our platform is designed to provide a seamless and intuitive experience for user
     - Image, Room Name, Capacity, Price Per Slot, "See Details" Button.
   - **See More Button:** Redirects to the Meeting Rooms page. -->
 
-- **Extra Sections:**
+<!-- - **Extra Sections:** -->
   <!-- - **Why Choose Us?:** Highlights features like "Seamless Booking Experience" and "Secure Transactions."
   - **How It Works Section:**
     - Steps: Select a Room, Choose Date & Time, Confirm Booking.
     - Icons/Illustrations for each step. -->
-  - **Customer Testimonials Section:**
-    - Carousel with customer profile pictures, names, roles, and testimonials.
+  <!-- - **Customer Testimonials Section:**
+    - Carousel with customer profile pictures, names, roles, and testimonials. -->
 
 - **Footer Section:**
   - **Contact Information:** Email, phone number, office address.
