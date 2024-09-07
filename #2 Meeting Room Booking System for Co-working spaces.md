@@ -12,9 +12,9 @@ Our platform is designed to provide a seamless and intuitive experience for user
 #### **Public Pages**
 
 **1. Homepage / Landing Page**
-- **Header Section / Navbar:**
+<!-- - **Header Section / Navbar:**
   - **Logo/System Name:** Positioned at the top left. Clicking redirects to the homepage.
-  - **Navigation Links:** Home, Meeting Rooms, About Us, Contact Us, Login/Register.
+  - **Navigation Links:** Home, Meeting Rooms, About Us, Contact Us, Login/Register. -->
   - **User Icon/Dropdown:** 
     - **For Authenticated Users:** My Bookings, Logout.
     - **For Admins:** Dashboard, Logout.
@@ -29,10 +29,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
 <!-- - **Service Advertisement Section:**
   - **Highlighted Services:** Real-Time Availability, Instant Booking Confirmation, Flexible Scheduling, 24/7 Support. -->
 
-- **Featured Rooms Section:**
+<!-- - **Featured Rooms Section:**
   - **Room Cards:** 
     - Image, Room Name, Capacity, Price Per Slot, "See Details" Button.
-  - **See More Button:** Redirects to the Meeting Rooms page.
+  - **See More Button:** Redirects to the Meeting Rooms page. -->
 
 - **Extra Sections:**
   - **Why Choose Us?:** Highlights features like "Seamless Booking Experience" and "Secure Transactions."

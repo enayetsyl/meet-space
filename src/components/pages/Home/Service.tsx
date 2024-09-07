@@ -3,7 +3,7 @@ import ServiceCard from "./ServiceCard"
 
 const Service = () => {
   return (
-    <div className="px-5 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-8 bg-[#fafafa] pt-32">
+    <div className="px-5 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-8 bg-[#fafafa] py-32">
     {serviceInfo.map((service, index) => (
         <div
           key={service.id}

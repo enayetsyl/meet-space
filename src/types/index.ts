@@ -22,3 +22,8 @@ export interface ApiResponse<T> {
   message: string;
   data: T;
 }
+
+export type MeetingImages = {
+  id: number;
+  image: string;
+};
