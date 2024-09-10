@@ -14,6 +14,7 @@ import Checkout from "../pages/public/Checkout";
 import RoomManagement from "../pages/admin/RoomManagement";
 import SlotsManagement from "../pages/admin/SlotsManagement";
 import Error404 from "../pages/public/Error404";
+import Booking from "../pages/public/Booking";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/single-room/:roomId", element: <RoomDetails/>
+      },
+      {
+        path: "/booking", element: <Booking/>
       },
       {
         path: "/checkout", element: <Checkout/>
