@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import {  Link, useNavigate } from "react-router-dom";
+import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../../redux/api/authApi";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../redux/features/authSlice";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,11 @@ const LoginForm = () => {
   
   });
   const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  const redirectPath = new URLSearchParams(location.search).get("redirect") || "/";
+
 
   const [emailError, setEmailError] = useState("");
   const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
@@ -43,9 +50,12 @@ const LoginForm = () => {
 
     // Perform signup request
     try {
-      const result = await login(formData).unwrap(); // API call
+      const result = await login(formData).unwrap(); 
+      
+      dispatch(setUser(result.data)); 
+
       sessionStorage.setItem("token", result.token);
-      navigate("/");
+      navigate(redirectPath);
       toast.success("Login successful.");
       
     } catch (error) {

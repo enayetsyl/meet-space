@@ -15,6 +15,7 @@ import RoomManagement from "../pages/admin/RoomManagement";
 import SlotsManagement from "../pages/admin/SlotsManagement";
 import Error404 from "../pages/public/Error404";
 import Booking from "../pages/public/Booking";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
         path: "/sign-up", element: <SignUp/>
       },
       {
-        path: "/my-bookings", element: <MyBookings/>
+        path: "/my-bookings", element:  <PrivateRoute>
+        <MyBookings />
+      </PrivateRoute>
       },
       {
         path: "/single-room/:roomId", element: <RoomDetails/>
