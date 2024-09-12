@@ -15,8 +15,16 @@ export const roomApi = createApi({
     getRoomById: builder.query<ApiResponse<Room>, string>({
       query: (id) => `/${id}`,
       providesTags: ['Rooms'],
-    })
-  })
+    }),
+    createRoom: builder.mutation<ApiResponse<Room>, Partial<Room>>({
+      query: (newRoom) => ({
+        url: '/',
+        method: 'POST',
+        body: newRoom,
+      }),
+      invalidatesTags: ['Rooms'],
+    }),
+  }),
 })
 
-export const { useGetRoomsQuery, useGetRoomByIdQuery } = roomApi;
+export const { useGetRoomsQuery, useGetRoomByIdQuery, useCreateRoomMutation } = roomApi;

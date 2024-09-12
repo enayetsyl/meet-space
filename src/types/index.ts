@@ -6,7 +6,7 @@ export type Service = {
 };
 
 export type Room = {
-  _id: string;
+  _id?: string;
   name:  string;
   roomNo: number; 
   floorNo: number;
@@ -41,4 +41,10 @@ export type HowCardProps = {
     image: string;
   };
   index: number;
+}
+
+export interface BackendError {
+  message: string;
+  errorSources?: Array<{ path: string; message: string }>;
+  stack?: string;
 }

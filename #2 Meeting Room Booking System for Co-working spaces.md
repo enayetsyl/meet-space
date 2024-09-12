@@ -93,10 +93,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
 ---
 
 #### **User Pages [Private/Protected Route]** 
-**7. Room Details Page**
+<!-- **7. Room Details Page**
 - **Room Information:**
   - **Detailed Display:** Multiple Images, Room Name, Room No., Floor No., Capacity, Price Per Slot, Amenities.
-  - **Book Now Button:** A "Book Now" button that navigates to the booking page.
+  - **Book Now Button:** A "Book Now" button that navigates to the booking page. -->
 
 **8. Booking Process**
 - **Booking Form:**
