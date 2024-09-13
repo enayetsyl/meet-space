@@ -192,110 +192,155 @@ const RoomManagement = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700">Price</label>
+                <label className="block text-gray-700">Room No</label>
                 <input
                   type="number"
-                  value={selectedRoom?.price}
+                  value={selectedRoom?.roomNo}
                   onChange={(e) =>
-                    setSelectedRoom((prevProduct) =>
-                      prevProduct
-                        ? { ...prevProduct, price: Number(e.target.value) }
-                        : prevProduct
+                    setSelectedRoom((prevRoom) =>
+                      prevRoom
+                        ? { ...prevRoom, roomNo: Number(e.target.value) }
+                        : prevRoom
                     )
                   }
-                  name="price"
+                  name="roomNo"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
                 />
               </div>
+
               <div className="mb-4">
-                <label className="block text-gray-700">Description</label>
-                <textarea
-                  value={selectedRoom?.description}
-                  name="description"
-                  onChange={(e) =>
-                    setSelectedRoom((prevProduct) =>
-                      prevProduct
-                        ? { ...prevProduct, description: e.target.value }
-                        : prevProduct
-                    )
-                  }
-                  placeholder="Enter product description"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                ></textarea>
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">
-                  Available Quantity
-                </label>
+                <label className="block text-gray-700">Floor No</label>
                 <input
                   type="number"
-                  name="quantity"
-                  value={selectedRoom?.quantity}
+                  name="floorNo"
+                  value={selectedRoom?.floorNo}
                   onChange={(e) =>
-                    setSelectedRoom((prevProduct) =>
-                      prevProduct
-                        ? { ...prevProduct, quantity: Number(e.target.value) }
-                        : prevProduct
+                    setSelectedRoom((prevRoom) =>
+                      prevRoom
+                        ? { ...prevRoom, floorNo: Number(e.target.value) }
+                        : prevRoom
                     )
                   }
-                  placeholder="Enter available quantity"
+                  placeholder="Enter Floor No"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700">Rating</label>
+                <label className="block text-gray-700">Capacity</label>
                 <input
-                  type="text"
-                  name="rating"
-                  value={selectedRoom?.rating}
+                  type="number"
+                  name="capacity"
+                  value={selectedRoom?.capacity}
                   onChange={(e) =>
-                    setSelectedRoom((prevProduct) =>
-                      prevProduct
-                        ? { ...prevProduct, rating: Number(e.target.value) }
-                        : prevProduct
+                    setSelectedRoom((prevRoom) =>
+                      prevRoom
+                        ? { ...prevRoom, capacity: Number(e.target.value) }
+                        : prevRoom
                     )
                   }
-                  placeholder="Enter product rating"
+                  placeholder="Enter Capacity"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700">Image URL</label>
+                <label className="block text-gray-700">Price Per Slot</label>
                 <input
                   type="text"
-                  name="image"
-                  value={selectedRoom?.image}
+                  name="pricePerSlot"
+                  value={selectedRoom?.pricePerSlot}
                   onChange={(e) =>
-                    setSelectedRoom((prevProduct) =>
-                      prevProduct
-                        ? { ...prevProduct, image: e.target.value }
-                        : prevProduct
+                    setSelectedRoom((prevRoom) =>
+                      prevRoom
+                        ? { ...prevRoom, pricePerSlot: Number(e.target.value) }
+                        : prevRoom
                     )
                   }
-                  placeholder="Enter image URL"
+                  placeholder="Enter price per slot"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
                 />
               </div>
+              {/* Amenities Section */}
               <div className="mb-4">
-                <label className="block text-gray-700">Brand</label>
-                <input
-                  type="text"
-                  name="brand"
-                  value={selectedRoom?.brand}
-                  onChange={(e) =>
-                    setSelectedRoom((prevProduct) =>
-                      prevProduct
-                        ? { ...prevProduct, brand: e.target.value }
-                        : prevProduct
-                    )
-                  }
-                  placeholder="Enter brand name"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
+                <label className="block text-gray-700">Amenities</label>
+                <div className="flex space-x-2">
+                  <input
+                    type="text"
+                    placeholder="Enter an amenity"
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                    value={amenity}
+                    onChange={(e) => setAmenity(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                    onClick={() => {
+                      if (amenity.trim() !== "") {
+                        setSelectedRoom((prevRoom) =>
+                          prevRoom
+                            ? {
+                                ...prevRoom,
+                                amenities: [
+                                  ...(prevRoom.amenities ?? []),
+                                  amenity,
+                                ],
+                              }
+                            : prevRoom
+                        );
+                        setAmenity("");
+                      }
+                    }}
+                  >
+                    Add
+                  </button>
+                </div>
               </div>
+
+              {/* Display added amenities */}
+              {/* Display added amenities */}
+              {selectedRoom?.amenities && selectedRoom.amenities.length > 0 && (
+                <div className="mb-4">
+                  <label className="block text-gray-700">
+                    Added Amenities:
+                  </label>
+                  <ul className="list-disc pl-5">
+                    {(selectedRoom?.amenities ?? []).map((amenity, index) => (
+                      <li
+                        key={index}
+                        className="flex justify-between items-center"
+                      >
+                        {amenity}
+                        <button
+                          type="button"
+                          className="text-red-500 hover:text-red-700 ml-2"
+                          onClick={() => {
+                            setSelectedRoom((prevRoom) =>
+                              prevRoom
+                                ? {
+                                    ...prevRoom,
+                                    amenities:
+                                      prevRoom.amenities?.filter(
+                                        (_, i) => i !== index
+                                      ) ?? [],
+                                  }
+                                : prevRoom
+                            );
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <div className="flex justify-end">
                 <button
-                  onClick={handleUpdateProduct}
+                   onClick={() => {
+                    if (selectedRoom) {
+                      handleUpdateProduct(selectedRoom);
+                    }
+                  }}
                   className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                 >
                   Save
@@ -320,7 +365,11 @@ const RoomManagement = () => {
             <p>Are you sure you want to delete this product?</p>
             <div className="flex justify-end mt-5">
               <button
-                onClick={handleDeleteProduct}
+                onClick={() => {
+                  if (selectedRoom) {
+                    handleDeleteProduct(selectedRoom);
+                  }
+                }}
                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
               >
                 Delete
@@ -343,7 +392,7 @@ const RoomManagement = () => {
             {" "}
             {/* Adjusted margin top */}
             <h2 className="text-2xl font-bold mb-5">Add Room</h2>
-            <form>
+            <form onSubmit={handleAddProduct}>
               <div className="mb-4">
                 <label className="block text-gray-700">Room Name</label>
                 <input
@@ -422,13 +471,13 @@ const RoomManagement = () => {
               </div>
 
               {/* Display added amenities */}
-              {newRoom.amenities.length > 0 && (
+              {selectedRoom?.amenities && selectedRoom.amenities.length > 0 && (
                 <div className="mb-4">
                   <label className="block text-gray-700">
                     Added Amenities:
                   </label>
                   <ul className="list-disc pl-5">
-                    {newRoom.amenities.map((amenity, index) => (
+                    {newRoom?.amenities?.map((amenity, index) => (
                       <li
                         key={index}
                         className="flex justify-between items-center"
@@ -449,7 +498,7 @@ const RoomManagement = () => {
 
               <div className="flex justify-end">
                 <button
-                  onClick={handleAddProduct}
+                  type='submit'
                   className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                 >
                   Add Room
