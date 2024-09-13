@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../../components/shared/Button";
 import {
   useCreateRoomMutation,
+  useDeleteRoomMutation,
   useGetRoomsQuery,
   useUpdateRoomMutation,
 } from "../../redux/api/roomApi";
@@ -16,6 +17,7 @@ const RoomManagement = () => {
   const rooms: Room[] = data?.data || [];
   const [createRoom] = useCreateRoomMutation();
   const [updateRoom] = useUpdateRoomMutation()
+  const [deleteRoom] = useDeleteRoomMutation ()
 
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
 
@@ -95,8 +97,25 @@ const RoomManagement = () => {
       }
     }
   };
-  const handleDeleteRoom = (room: Room) => {
-    console.log(room);
+  const handleDeleteRoom = async  (selectedRoom: Room) => {
+    const id = selectedRoom._id as string;
+    try {
+      const response = await deleteRoom(id).unwrap();
+      
+      if(response.statusCode === 200){
+        toast.success(`${response.message}`)
+        setIsDeleteModalOpen(false)
+      }
+    } catch (error) {
+      const backendError = error as BackendError;
+
+      if (backendError?.message) {
+        toast.error(`${backendError.message}`);
+        console.log("Error Sources:", backendError.errorSources);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    }
   };
 
   const handleAddRoom = async (event: React.FormEvent<HTMLFormElement>) => {

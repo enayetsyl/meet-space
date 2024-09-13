@@ -38,8 +38,15 @@ export const roomApi = createApi({
         body:updatedRoom,
       }),
       invalidatesTags: ['Rooms']
+    }),
+    deleteRoom: builder.mutation<ApiResponse<void>, string>({
+      query: (id) => ({
+        url: `/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['Rooms']
     })
   }),
 })
 
-export const { useGetRoomsQuery, useGetRoomByIdQuery, useCreateRoomMutation, useUpdateRoomMutation  } = roomApi;
+export const { useGetRoomsQuery, useGetRoomByIdQuery, useCreateRoomMutation, useUpdateRoomMutation, useDeleteRoomMutation   } = roomApi;
