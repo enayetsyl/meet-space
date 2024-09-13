@@ -18,11 +18,11 @@ export type Room = {
 
 export type Slot ={
   _id?: string;
-  room: string | null;
+  room: string;
   date: string;
   startTime: string;
   endTime: string;
-  isBooked: boolean;
+  isBooked?: boolean;
 }
 
 export interface ApiResponse<T> {
@@ -58,6 +58,13 @@ export interface BackendError {
   stack?: string;
 }
 
+export type AddSlotProps = {
+  handleAddSlot: (event: React.FormEvent<HTMLFormElement>) => void;
+  newSlot: Slot;
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setIsAddSlotModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export type AddRoomProps = {
   handleAddRoom: (event: React.FormEvent<HTMLFormElement>) => void;
   newRoom: Room;
@@ -70,6 +77,13 @@ export type AddRoomProps = {
   selectedRoom?: Room | null;
 };
 
+export type EditSlotModalProps = {
+  selectedSlot: Slot | null;
+  setSelectedSlot: React.Dispatch<React.SetStateAction<Slot | null>>;
+  handleEditSlot: (slot: Slot) => void;
+  setIsEditSlotModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export type EditRoomModalProps = {
   selectedRoom: Room | null;
   setSelectedRoom: React.Dispatch<React.SetStateAction<Room | null>>;
@@ -78,6 +92,12 @@ export type EditRoomModalProps = {
   handleUpdateRoom: (room: Room) => void;
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export type DeleteSlotModalProps = {
+  selectedSlot: Slot | null;
+  handleDeleteSlot: (slot: Slot) => void;
+  setIsDeleteSlotModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export type DeleteRoomModalProps = {
   selectedRoom: Room | null;

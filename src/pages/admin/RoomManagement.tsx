@@ -16,8 +16,8 @@ const RoomManagement = () => {
   const { data, refetch } = useGetRoomsQuery();
   const rooms: Room[] = data?.data || [];
   const [createRoom] = useCreateRoomMutation();
-  const [updateRoom] = useUpdateRoomMutation()
-  const [deleteRoom] = useDeleteRoomMutation ()
+  const [updateRoom] = useUpdateRoomMutation();
+  const [deleteRoom] = useDeleteRoomMutation();
 
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
 
@@ -77,14 +77,14 @@ const RoomManagement = () => {
   };
 
   const handleUpdateRoom = async (updatedRoom: Room) => {
-    console.log('updated room', updatedRoom)
+    console.log("updated room", updatedRoom);
     const id = updatedRoom._id as string;
     try {
-      const response = await updateRoom({id, updatedRoom}).unwrap()
-      console.log(response)
-      if(response.statusCode === 200){
-        toast.success(`${response.message}`)
-        setIsEditModalOpen(false)
+      const response = await updateRoom({ id, updatedRoom }).unwrap();
+      console.log(response);
+      if (response.statusCode === 200) {
+        toast.success(`${response.message}`);
+        setIsEditModalOpen(false);
       }
     } catch (error) {
       const backendError = error as BackendError;
@@ -97,14 +97,14 @@ const RoomManagement = () => {
       }
     }
   };
-  const handleDeleteRoom = async  (selectedRoom: Room) => {
+  const handleDeleteRoom = async (selectedRoom: Room) => {
     const id = selectedRoom._id as string;
     try {
       const response = await deleteRoom(id).unwrap();
-      
-      if(response.statusCode === 200){
-        toast.success(`${response.message}`)
-        setIsDeleteModalOpen(false)
+
+      if (response.statusCode === 200) {
+        toast.success(`${response.message}`);
+        setIsDeleteModalOpen(false);
       }
     } catch (error) {
       const backendError = error as BackendError;
@@ -213,36 +213,36 @@ const RoomManagement = () => {
       {/* Edit Product Modal */}
       {isEditModalOpen && (
         <EditRoomModal
-        selectedRoom={selectedRoom}
-        setSelectedRoom={setSelectedRoom}
-        amenity={amenity}
-        setAmenity={setAmenity}
-        handleUpdateRoom={handleUpdateRoom}
-        setIsEditModalOpen={setIsEditModalOpen}
+          selectedRoom={selectedRoom}
+          setSelectedRoom={setSelectedRoom}
+          amenity={amenity}
+          setAmenity={setAmenity}
+          handleUpdateRoom={handleUpdateRoom}
+          setIsEditModalOpen={setIsEditModalOpen}
         />
       )}
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
         <DeleteRoomModal
-        selectedRoom={selectedRoom}
-        handleDeleteRoom={handleDeleteRoom}
-        setIsDeleteModalOpen={setIsDeleteModalOpen}
+          selectedRoom={selectedRoom}
+          handleDeleteRoom={handleDeleteRoom}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
         />
       )}
 
       {/* Add Product Modal */}
       {isAddModalOpen && (
         <AddRoom
-        handleAddRoom={handleAddRoom}
-        newRoom={newRoom}
-        handleInputChange={handleInputChange}
-        amenity={amenity}
-        setAmenity={setAmenity}
-        handleAddAmenity={handleAddAmenity}
-        selectedRoom={selectedRoom}
-        handleRemoveAmenity={handleRemoveAmenity}
-        setIsAddModalOpen={setIsAddModalOpen}
+          handleAddRoom={handleAddRoom}
+          newRoom={newRoom}
+          handleInputChange={handleInputChange}
+          amenity={amenity}
+          setAmenity={setAmenity}
+          handleAddAmenity={handleAddAmenity}
+          selectedRoom={selectedRoom}
+          handleRemoveAmenity={handleRemoveAmenity}
+          setIsAddModalOpen={setIsAddModalOpen}
         />
       )}
     </div>
