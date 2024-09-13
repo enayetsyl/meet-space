@@ -119,10 +119,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
 #### **Admin Pages [Private for Admin Only]**
 
 **1. Admin Dashboard Page**
-- **Room Management:**
+<!-- - **Room Management:**
   - **Create Room Button:** Form for adding new rooms.
   - **Room List Table:** Room Name, Room No., Floor No., Capacity, PricePerSlot, Action Buttons (Update/Delete).
-  - **Real-Time Updates:** Optimistic updates for create, update, and delete operations.
+  - **Real-Time Updates:** Optimistic updates for create, update, and delete operations. -->
 
 - **Slots Management:**
   - **Create Slot Button:** Form for adding new slots.

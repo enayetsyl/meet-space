@@ -16,6 +16,15 @@ export type Room = {
   isDeleted?: boolean;
 };
 
+export type Slot ={
+  _id?: string;
+  room: string | null;
+  date: string;
+  startTime: string;
+  endTime: string;
+  isBooked: boolean;
+}
+
 export interface ApiResponse<T> {
   success: boolean;
   statusCode: number;
