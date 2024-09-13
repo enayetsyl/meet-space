@@ -48,3 +48,30 @@ export interface BackendError {
   errorSources?: Array<{ path: string; message: string }>;
   stack?: string;
 }
+
+export type AddRoomProps = {
+  handleAddRoom: (event: React.FormEvent<HTMLFormElement>) => void;
+  newRoom: Room;
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  amenity: string;
+  setAmenity: React.Dispatch<React.SetStateAction<string>>;
+  handleAddAmenity: () => void;
+  handleRemoveAmenity: (index: number) => void;
+  setIsAddModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedRoom?: Room | null;
+};
+
+export type EditRoomModalProps = {
+  selectedRoom: Room | null;
+  setSelectedRoom: React.Dispatch<React.SetStateAction<Room | null>>;
+  amenity: string;
+  setAmenity: React.Dispatch<React.SetStateAction<string>>;
+  handleUpdateRoom: (room: Room) => void;
+  setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type DeleteRoomModalProps = {
+  selectedRoom: Room | null;
+  handleDeleteRoom: (room:Room) => void;
+  setIsDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}

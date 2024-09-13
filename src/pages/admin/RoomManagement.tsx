@@ -3,14 +3,19 @@ import Button from "../../components/shared/Button";
 import {
   useCreateRoomMutation,
   useGetRoomsQuery,
+  useUpdateRoomMutation,
 } from "../../redux/api/roomApi";
 import { BackendError, Room } from "../../types";
 import toast from "react-hot-toast";
+import AddRoom from "../../components/admin/RoomManagement/AddRoom";
+import EditRoomModal from "../../components/admin/RoomManagement/EditRoomModal";
+import DeleteRoomModal from "../../components/admin/RoomManagement/DeleteRoomModal";
 
 const RoomManagement = () => {
   const { data, refetch } = useGetRoomsQuery();
   const rooms: Room[] = data?.data || [];
   const [createRoom] = useCreateRoomMutation();
+  const [updateRoom] = useUpdateRoomMutation()
 
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
 
@@ -69,13 +74,32 @@ const RoomManagement = () => {
     setIsAddModalOpen(true);
   };
 
-  const handleUpdateProduct = (room: Room) => {
+  const handleUpdateRoom = async (updatedRoom: Room) => {
+    console.log('updated room', updatedRoom)
+    const id = updatedRoom._id as string;
+    try {
+      const response = await updateRoom({id, updatedRoom}).unwrap()
+      console.log(response)
+      if(response.statusCode === 200){
+        toast.success(`${response.message}`)
+        setIsEditModalOpen(false)
+      }
+    } catch (error) {
+      const backendError = error as BackendError;
+
+      if (backendError?.message) {
+        toast.error(`${backendError.message}`);
+        console.log("Error Sources:", backendError.errorSources);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    }
+  };
+  const handleDeleteRoom = (room: Room) => {
     console.log(room);
   };
-  const handleDeleteProduct = (room: Room) => {
-    console.log(room);
-  };
-  const handleAddProduct = async (event: React.MouseEvent<HTMLFormElement>) => {
+
+  const handleAddRoom = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(newRoom);
     try {
@@ -169,350 +193,38 @@ const RoomManagement = () => {
       </div>
       {/* Edit Product Modal */}
       {isEditModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto py-10 ">
-          <div className="bg-white  mt-10 lg:mt-0 p-5 pt-40 lg:pt-20 rounded-lg shadow-lg w-[80%] lg:w-1/2">
-            {" "}
-            {/* Adjust width if necessary */}
-            <h2 className="text-2xl font-bold mb-5">Edit Room</h2>
-            <form>
-              <div className="mb-4">
-                <label className="block text-gray-700">Room Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={selectedRoom?.name || ""}
-                  onChange={(e) =>
-                    setSelectedRoom((prevRoom) =>
-                      prevRoom
-                        ? { ...prevRoom, name: e.target.value }
-                        : prevRoom
-                    )
-                  }
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Room No</label>
-                <input
-                  type="number"
-                  value={selectedRoom?.roomNo}
-                  onChange={(e) =>
-                    setSelectedRoom((prevRoom) =>
-                      prevRoom
-                        ? { ...prevRoom, roomNo: Number(e.target.value) }
-                        : prevRoom
-                    )
-                  }
-                  name="roomNo"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-gray-700">Floor No</label>
-                <input
-                  type="number"
-                  name="floorNo"
-                  value={selectedRoom?.floorNo}
-                  onChange={(e) =>
-                    setSelectedRoom((prevRoom) =>
-                      prevRoom
-                        ? { ...prevRoom, floorNo: Number(e.target.value) }
-                        : prevRoom
-                    )
-                  }
-                  placeholder="Enter Floor No"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Capacity</label>
-                <input
-                  type="number"
-                  name="capacity"
-                  value={selectedRoom?.capacity}
-                  onChange={(e) =>
-                    setSelectedRoom((prevRoom) =>
-                      prevRoom
-                        ? { ...prevRoom, capacity: Number(e.target.value) }
-                        : prevRoom
-                    )
-                  }
-                  placeholder="Enter Capacity"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Price Per Slot</label>
-                <input
-                  type="text"
-                  name="pricePerSlot"
-                  value={selectedRoom?.pricePerSlot}
-                  onChange={(e) =>
-                    setSelectedRoom((prevRoom) =>
-                      prevRoom
-                        ? { ...prevRoom, pricePerSlot: Number(e.target.value) }
-                        : prevRoom
-                    )
-                  }
-                  placeholder="Enter price per slot"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              {/* Amenities Section */}
-              <div className="mb-4">
-                <label className="block text-gray-700">Amenities</label>
-                <div className="flex space-x-2">
-                  <input
-                    type="text"
-                    placeholder="Enter an amenity"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                    value={amenity}
-                    onChange={(e) => setAmenity(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                    onClick={() => {
-                      if (amenity.trim() !== "") {
-                        setSelectedRoom((prevRoom) =>
-                          prevRoom
-                            ? {
-                                ...prevRoom,
-                                amenities: [
-                                  ...(prevRoom.amenities ?? []),
-                                  amenity,
-                                ],
-                              }
-                            : prevRoom
-                        );
-                        setAmenity("");
-                      }
-                    }}
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-
-              {/* Display added amenities */}
-              {/* Display added amenities */}
-              {selectedRoom?.amenities && selectedRoom.amenities.length > 0 && (
-                <div className="mb-4">
-                  <label className="block text-gray-700">
-                    Added Amenities:
-                  </label>
-                  <ul className="list-disc pl-5">
-                    {(selectedRoom?.amenities ?? []).map((amenity, index) => (
-                      <li
-                        key={index}
-                        className="flex justify-between items-center"
-                      >
-                        {amenity}
-                        <button
-                          type="button"
-                          className="text-red-500 hover:text-red-700 ml-2"
-                          onClick={() => {
-                            setSelectedRoom((prevRoom) =>
-                              prevRoom
-                                ? {
-                                    ...prevRoom,
-                                    amenities:
-                                      prevRoom.amenities?.filter(
-                                        (_, i) => i !== index
-                                      ) ?? [],
-                                  }
-                                : prevRoom
-                            );
-                          }}
-                        >
-                          Remove
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="flex justify-end">
-                <button
-                   onClick={() => {
-                    if (selectedRoom) {
-                      handleUpdateProduct(selectedRoom);
-                    }
-                  }}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={() => setIsEditModalOpen(false)}
-                  className="ml-2 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <EditRoomModal
+        selectedRoom={selectedRoom}
+        setSelectedRoom={setSelectedRoom}
+        amenity={amenity}
+        setAmenity={setAmenity}
+        handleUpdateRoom={handleUpdateRoom}
+        setIsEditModalOpen={setIsEditModalOpen}
+        />
       )}
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-5 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-5">Delete Product</h2>
-            <p>Are you sure you want to delete this product?</p>
-            <div className="flex justify-end mt-5">
-              <button
-                onClick={() => {
-                  if (selectedRoom) {
-                    handleDeleteProduct(selectedRoom);
-                  }
-                }}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => setIsDeleteModalOpen(false)}
-                className="ml-2 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
+        <DeleteRoomModal
+        selectedRoom={selectedRoom}
+        handleDeleteRoom={handleDeleteRoom}
+        setIsDeleteModalOpen={setIsDeleteModalOpen}
+        />
       )}
 
       {/* Add Product Modal */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto py-10">
-          <div className="bg-white mt-10 lg:mt-0 p-5 pt-5 lg:pt-20 rounded-lg shadow-lg w-[80%] lg:w-1/2">
-            {" "}
-            {/* Adjusted margin top */}
-            <h2 className="text-2xl font-bold mb-5">Add Room</h2>
-            <form onSubmit={handleAddProduct}>
-              <div className="mb-4">
-                <label className="block text-gray-700">Room Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter room  name"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                  name="name"
-                  value={newRoom.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Room No</label>
-                <input
-                  type="number"
-                  placeholder="Enter room  name"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                  name="roomNo"
-                  value={newRoom.roomNo}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Floor No</label>
-                <input
-                  type="number"
-                  placeholder="Enter floor number"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                  name="floorNo"
-                  value={newRoom.floorNo}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Capacity</label>
-                <input
-                  type="number"
-                  placeholder="Enter capacity"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                  name="capacity"
-                  value={newRoom.capacity}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Price Per Slot</label>
-                <input
-                  type="number"
-                  placeholder="Enter product rating"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                  name="pricePerSlot"
-                  value={newRoom.pricePerSlot}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              {/* Amenities Section */}
-              <div className="mb-4">
-                <label className="block text-gray-700">Amenities</label>
-                <div className="flex space-x-2">
-                  <input
-                    type="text"
-                    placeholder="Enter an amenity"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                    value={amenity}
-                    onChange={(e) => setAmenity(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                    onClick={handleAddAmenity}
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-
-              {/* Display added amenities */}
-              {selectedRoom?.amenities && selectedRoom.amenities.length > 0 && (
-                <div className="mb-4">
-                  <label className="block text-gray-700">
-                    Added Amenities:
-                  </label>
-                  <ul className="list-disc pl-5">
-                    {newRoom?.amenities?.map((amenity, index) => (
-                      <li
-                        key={index}
-                        className="flex justify-between items-center"
-                      >
-                        {amenity}
-                        <button
-                          type="button"
-                          className="text-red-500 hover:text-red-700 ml-2"
-                          onClick={() => handleRemoveAmenity(index)}
-                        >
-                          Remove
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="flex justify-end">
-                <button
-                  type='submit'
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-                >
-                  Add Room
-                </button>
-                <button
-                  onClick={() => setIsAddModalOpen(false)}
-                  className="ml-2 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <AddRoom
+        handleAddRoom={handleAddRoom}
+        newRoom={newRoom}
+        handleInputChange={handleInputChange}
+        amenity={amenity}
+        setAmenity={setAmenity}
+        handleAddAmenity={handleAddAmenity}
+        selectedRoom={selectedRoom}
+        handleRemoveAmenity={handleRemoveAmenity}
+        setIsAddModalOpen={setIsAddModalOpen}
+        />
       )}
     </div>
   );
