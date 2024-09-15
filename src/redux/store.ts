@@ -12,7 +12,7 @@ const store = configureStore({
     [slotApi.reducerPath]: slotApi.reducer,
     auth: authReducer,
   },
- middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(roomApi.middleware, authApi.middleware),
+ middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(roomApi.middleware, authApi.middleware, slotApi.middleware),
 });
 
 setupListeners(store.dispatch);

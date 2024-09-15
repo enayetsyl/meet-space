@@ -3,7 +3,7 @@ import { AddRoomProps } from "../../../types";
 
 
 
-const AddRoom = ({handleAddRoom,newRoom, handleInputChange, amenity, setAmenity, handleAddAmenity, selectedRoom, handleRemoveAmenity, setIsAddModalOpen }: AddRoomProps) => {
+const AddRoom = ({handleAddRoom,newRoom, handleInputChange, amenity, setAmenity, handleAddAmenity, handleRemoveAmenity, setIsAddModalOpen }: AddRoomProps) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto py-10">
           <div className="bg-white mt-10 lg:mt-0 p-5 pt-5 lg:pt-20 rounded-lg shadow-lg w-[80%] lg:w-1/2">
@@ -89,7 +89,7 @@ const AddRoom = ({handleAddRoom,newRoom, handleInputChange, amenity, setAmenity,
               </div>
 
               {/* Display added amenities */}
-              {selectedRoom?.amenities && selectedRoom.amenities.length > 0 && (
+              {newRoom?.amenities && newRoom.amenities.length > 0 && (
                 <div className="mb-4">
                   <label className="block text-gray-700">
                     Added Amenities:

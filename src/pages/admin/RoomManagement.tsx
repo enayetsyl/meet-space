@@ -15,6 +15,8 @@ import DeleteRoomModal from "../../components/admin/RoomManagement/DeleteRoomMod
 const RoomManagement = () => {
   const { data, refetch } = useGetRoomsQuery();
   const rooms: Room[] = data?.data || [];
+
+  
   const [createRoom] = useCreateRoomMutation();
   const [updateRoom] = useUpdateRoomMutation();
   const [deleteRoom] = useDeleteRoomMutation();
@@ -48,7 +50,7 @@ const RoomManagement = () => {
     if (amenity.trim() !== "") {
       setNewRoom((prevRoom) => ({
         ...prevRoom,
-        amenities: [...(prevRoom.amenities ?? []), amenity], // Provide a default empty array if amenities is undefined
+        amenities: [...(prevRoom.amenities ?? []), amenity], 
       }));
       setAmenity("");
     }
@@ -240,7 +242,6 @@ const RoomManagement = () => {
           amenity={amenity}
           setAmenity={setAmenity}
           handleAddAmenity={handleAddAmenity}
-          selectedRoom={selectedRoom}
           handleRemoveAmenity={handleRemoveAmenity}
           setIsAddModalOpen={setIsAddModalOpen}
         />

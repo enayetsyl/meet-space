@@ -4,7 +4,7 @@ import { ApiResponse, Room } from "../../types";
 export const roomApi = createApi({
   reducerPath: 'roomApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://level-2-assignment-3-git-main-md-enayetur-rahmans-projects.vercel.app/api/rooms',
+    baseUrl: `${import.meta.env.VITE_API_BASE_URL}/api/rooms`,
     prepareHeaders: (headers) => {
       const token = sessionStorage.getItem('token'); 
       if (token) {

@@ -18,7 +18,7 @@ export type Room = {
 
 export type Slot ={
   _id?: string;
-  room: string;
+  room: Room;
   date: string;
   startTime: string;
   endTime: string;
@@ -60,9 +60,12 @@ export interface BackendError {
 
 export type AddSlotProps = {
   handleAddSlot: (event: React.FormEvent<HTMLFormElement>) => void;
-  newSlot: Slot;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  newSlot: { room: string; date: string; startTime: string; endTime: string };
+  handleInputChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | { target: { name: string; value: Date | string } }
+  ) => void;
   setIsAddSlotModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  rooms: Room[];
 }
 
 export type AddRoomProps = {
@@ -82,6 +85,7 @@ export type EditSlotModalProps = {
   setSelectedSlot: React.Dispatch<React.SetStateAction<Slot | null>>;
   handleEditSlot: (slot: Slot) => void;
   setIsEditSlotModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  rooms: Room[];
 }
 
 export type EditRoomModalProps = {

@@ -5,7 +5,7 @@ import { ApiResponse, Slot } from "../../types";
 export const slotApi = createApi({
   reducerPath:"slotApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://level-2-assignment-3-git-main-md-enayetur-rahmans-projects.vercel.app/api/slots',
+    baseUrl: `${import.meta.env.VITE_API_BASE_URL}/api/slots`,
     prepareHeaders: (headers) => {
       const token = sessionStorage.getItem("token");
       if (token) {
@@ -17,7 +17,7 @@ export const slotApi = createApi({
   tagTypes: ["slots"],
   endpoints:(builder) => ({
     getSlots: builder.query<ApiResponse<Slot[]>, void>({
-      query: () => '/',
+      query: () => '/availability',
       providesTags: ["slots"],
     }),
     createSlot: builder.mutation<ApiResponse<Slot>, Partial<Slot>>({

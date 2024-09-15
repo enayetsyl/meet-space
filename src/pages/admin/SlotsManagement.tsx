@@ -1,71 +1,98 @@
-import { useState } from "react"
-import { useCreateSlotMutation, useDeleteSlotMutation, useGetSlotsQuery, useUpdateSlotMutation } from "../../redux/api/slotApi"
-import { BackendError, Slot } from "../../types"
-import toast from "react-hot-toast"
-import Button from "../../components/shared/Button"
-import EditSlotModal from "../../components/admin/SlotManagement/EditSlotModal"
-import DeleteSlotModal from "../../components/admin/SlotManagement/DeleteSlotModal"
-import AddSlotModal from "../../components/admin/SlotManagement/AddSlotModal"
+import { useState } from "react";
+import {
+  useCreateSlotMutation,
+  useDeleteSlotMutation,
+  useGetSlotsQuery,
+  useUpdateSlotMutation,
+} from "../../redux/api/slotApi";
+import { BackendError, Room, Slot } from "../../types";
+import toast from "react-hot-toast";
+import Button from "../../components/shared/Button";
+import EditSlotModal from "../../components/admin/SlotManagement/EditSlotModal";
+import DeleteSlotModal from "../../components/admin/SlotManagement/DeleteSlotModal";
+import AddSlotModal from "../../components/admin/SlotManagement/AddSlotModal";
+import { useGetRoomsQuery } from "../../redux/api/roomApi";
 
 const SlotsManagement = () => {
-  const { data, refetch} = useGetSlotsQuery()
-  const slots: Slot[] = data?.data || []
+  const { data, refetch } = useGetSlotsQuery();
+  const slots: Slot[] = data?.data || [];
 
-  const [createSlot] = useCreateSlotMutation()
-  const [updateSlot] = useUpdateSlotMutation()
-  const [deleteSlot] = useDeleteSlotMutation()
+  const { data: roomsData } = useGetRoomsQuery();
+  const rooms: Room[] = roomsData?.data || [];
 
-  const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null)
-  const [newSlot, setNewSlot] = useState<Slot>({
+  const [createSlot] = useCreateSlotMutation();
+  const [updateSlot] = useUpdateSlotMutation();
+  const [deleteSlot] = useDeleteSlotMutation();
+
+  const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+  const [newSlot, setNewSlot] = useState<{
+    room: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+  }>({
     room: "",
     date: "",
     startTime: "",
     endTime: "",
-  })
+  });
 
-  const[isAddSlotModalOpen, setIsAddSlotModalOpen] = useState(false)
-  const [isEditSlotModalOpen, setIsEditSlotModalOpen] = useState(false)
-  const [isDeleteSlotModalOpen, setIsDeleteSlotModalOpen] = useState(false)
+  const [isAddSlotModalOpen, setIsAddSlotModalOpen] = useState(false);
+  const [isEditSlotModalOpen, setIsEditSlotModalOpen] = useState(false);
+  const [isDeleteSlotModalOpen, setIsDeleteSlotModalOpen] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target
-    setNewSlot((prevSlot) =>({
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+      | { target: { name: string; value: Date | string } }
+  ) => {
+    const { name, value } = e.target;
+
+    // If the field is "date" and the value is a Date object, format it to a string
+    const formattedValue =
+      name === "date" && value instanceof Date
+        ? `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(
+            2,
+            "0"
+          )}-${String(value.getDate()).padStart(2, "0")}`
+        : value;
+
+    setNewSlot((prevSlot) => ({
       ...prevSlot,
-      [name]: value
-    }))
-  }
+      [name]: formattedValue,
+    }));
+  };
 
-  const openAddSlotModal =() =>{
-    setIsAddSlotModalOpen(true)
-  }
-  const openEditSlotModal =(slot: Slot) =>{
-    setSelectedSlot(slot)
-    setIsEditSlotModalOpen(true)
-  }
-  const openDeleteSlotModal =(slot: Slot) =>{
-    setSelectedSlot(slot)
-    setIsDeleteSlotModalOpen(true)
-  }
+  const openAddSlotModal = () => {
+    setIsAddSlotModalOpen(true);
+  };
+  const openEditSlotModal = (slot: Slot) => {
+    setSelectedSlot(slot);
+    setIsEditSlotModalOpen(true);
+  };
+  const openDeleteSlotModal = (slot: Slot) => {
+    setSelectedSlot(slot);
+    setIsDeleteSlotModalOpen(true);
+  };
 
   const handleAddSlot = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await createSlot(newSlot).unwrap()
-      console.log('Response add slot:', response)
-      if(response.statusCode === 200){
-        toast.success(`${response.message}`)
+      const response = await createSlot(newSlot).unwrap();
+      console.log("Response add slot:", response);
+      if (response.statusCode === 200) {
+        toast.success(`${response.message}`);
       }
 
-      setIsAddSlotModalOpen(false)
-      refetch()
+      setIsAddSlotModalOpen(false);
+      refetch();
 
       setNewSlot({
         room: "",
         date: "",
         startTime: "",
-        endTime: "",  
-      })
-
+        endTime: "",
+      });
     } catch (error) {
       const backendError = error as BackendError;
 
@@ -76,16 +103,37 @@ const SlotsManagement = () => {
         toast.error("An unexpected error occurred.");
       }
     }
-  }
+  };
 
   const handleEditSlot = async (updatedSlot: Slot) => {
     const id = updatedSlot._id as string;
+
+    // Extract start and end times
+    const [startHour, startMinute] = updatedSlot.startTime
+      .split(":")
+      .map(Number);
+    const [endHour, endMinute] = updatedSlot.endTime.split(":").map(Number);
+
+    // Calculate the total time difference in minutes
+    const startTotalMinutes = startHour * 60 + startMinute;
+    const endTotalMinutes = endHour * 60 + endMinute;
+    const timeDifference = endTotalMinutes - startTotalMinutes;
+
+    // Check if the difference is more than 60 minutes (1 hour)
+    if (timeDifference > 60) {
+      // Show an error message
+      toast.error(
+        "The time difference between start and end time should not exceed 1 hour."
+      );
+      return; // Prevent further execution
+    }
+
     try {
-      const response = await updateSlot({id, updatedSlot}).unwrap()
-      console.log('Response edit slot:', response)
-      if(response.statusCode === 200){
-        toast.success(`${response.message}`)
-        setIsEditSlotModalOpen(false)
+      const response = await updateSlot({ id, updatedSlot }).unwrap();
+      console.log("Response edit slot:", response);
+      if (response.statusCode === 200) {
+        toast.success(`${response.message}`);
+        setIsEditSlotModalOpen(false);
       }
     } catch (error) {
       const backendError = error as BackendError;
@@ -96,16 +144,15 @@ const SlotsManagement = () => {
         toast.error("An unexpected error occurred.");
       }
     }
-  }
+  };
 
   const handleDeleteSlot = async (selectedSlot: Slot) => {
     const id = selectedSlot._id as string;
     try {
-      const response = await deleteSlot(id).unwrap()
-      console.log('Response delete slot:', response)
-      if(response.statusCode === 200){
-        toast.success(`${response.message}`)
-        setIsDeleteSlotModalOpen(false)
+      const response = await deleteSlot(id).unwrap();
+      if (response.statusCode === 200) {
+        toast.success(`${response.message}`);
+        setIsDeleteSlotModalOpen(false);
       }
     } catch (error) {
       const backendError = error as BackendError;
@@ -116,7 +163,7 @@ const SlotsManagement = () => {
         toast.error("An unexpected error occurred.");
       }
     }
-  }
+  };
 
   return (
     <div className="p-5">
@@ -145,7 +192,7 @@ const SlotsManagement = () => {
           <tbody>
             {slots?.map((slot) => (
               <tr key={slot._id} className="border-t">
-                <td className="px-6 py-4">{slot.room}</td>
+                <td className="px-6 py-4">{slot.room.name}</td>
                 <td className="px-6 py-4">{slot.date}</td>
                 <td className="px-6 py-4">{slot.startTime}</td>
                 <td className="px-6 py-4">{slot.endTime}</td>
@@ -160,8 +207,7 @@ const SlotsManagement = () => {
                     Update
                   </Button>
                   <Button
-    
-    onClick={() => openDeleteSlotModal(slot)}
+                    onClick={() => openDeleteSlotModal(slot)}
                     className=" text-white px-[19px] py-2  hover:bg-red-600 transition"
                     variant="danger"
                     size="small"
@@ -178,33 +224,35 @@ const SlotsManagement = () => {
       {/* Edit Product Modal */}
       {isEditSlotModalOpen && (
         <EditSlotModal
-        selectedSlot={selectedSlot}
-        setSelectedSlot={setSelectedSlot}
-        handleEditSlot={handleEditSlot}
-        setIsEditSlotModalOpen={setIsEditSlotModalOpen}
+          selectedSlot={selectedSlot}
+          setSelectedSlot={setSelectedSlot}
+          handleEditSlot={handleEditSlot}
+          setIsEditSlotModalOpen={setIsEditSlotModalOpen}
+          rooms={rooms}
         />
       )}
 
       {/* Delete Confirmation Modal */}
       {isDeleteSlotModalOpen && (
         <DeleteSlotModal
-        selectedSlot={selectedSlot}
-        handleDeleteSlot={handleDeleteSlot}
-        setIsDeleteSlotModalOpen={setIsDeleteSlotModalOpen}
+          selectedSlot={selectedSlot}
+          handleDeleteSlot={handleDeleteSlot}
+          setIsDeleteSlotModalOpen={setIsDeleteSlotModalOpen}
         />
       )}
 
       {/* Add Product Modal */}
       {isAddSlotModalOpen && (
         <AddSlotModal
-        handleAddSlot={handleAddSlot}
-        newSlot={newSlot}
-        handleInputChange={handleInputChange}
-        setIsAddSlotModalOpen={setIsAddSlotModalOpen}
+          handleAddSlot={handleAddSlot}
+          newSlot={newSlot}
+          handleInputChange={handleInputChange}
+          setIsAddSlotModalOpen={setIsAddSlotModalOpen}
+          rooms={rooms}
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SlotsManagement
+export default SlotsManagement;
