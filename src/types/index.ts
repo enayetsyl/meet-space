@@ -25,6 +25,16 @@ export type Slot ={
   isBooked?: boolean;
 }
 
+export type Booking = {
+  _id?: string;
+  room: string;
+  slot: Slot;
+  date: string;
+  startTime: string;
+  endTime: string;
+  isBooked: boolean
+}
+
 export interface ApiResponse<T> {
   success: boolean;
   statusCode: number;
@@ -107,4 +117,28 @@ export type DeleteRoomModalProps = {
   selectedRoom: Room | null;
   handleDeleteRoom: (room:Room) => void;
   setIsDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type User = {
+  _id?: string;
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  role: string;
+  createdAt?: boolean;
+    updatedAt?: boolean;
+}
+
+export type BookingData = {
+  createdAt: string;
+  date: string;
+  isConfirmed: boolean;
+  isDelete: boolean;
+  room: Room;
+  slots: Slot[];
+  totalAmount: number;
+  updatedAt: string;
+  user: User;
+  _id: string;
 }

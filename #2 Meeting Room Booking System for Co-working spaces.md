@@ -98,10 +98,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Detailed Display:** Multiple Images, Room Name, Room No., Floor No., Capacity, Price Per Slot, Amenities.
   - **Book Now Button:** A "Book Now" button that navigates to the booking page. -->
 
-**8. Booking Process**
+<!-- **8. Booking Process**
 - **Booking Form:**
   - **Date and Time Selection:** Calendar view (Allows users to choose a booking date), available time slots (Show available time slots for that selected date. (based on isBooked = false)).
-  - **User Information Form:** Pre-filled with user details.
+  - **User Information Form:** Pre-filled with user details. -->
 
 **9. Confirmation and Payment / Checkout Page**
   
@@ -124,10 +124,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Room List Table:** Room Name, Room No., Floor No., Capacity, PricePerSlot, Action Buttons (Update/Delete).
   - **Real-Time Updates:** Optimistic updates for create, update, and delete operations. -->
 
-- **Slots Management:**
+<!-- - **Slots Management:**
   - **Create Slot Button:** Form for adding new slots.
   - **Slots List Table:** Room Name, Room No., Date, Start Time, End Time, Action Buttons (Update/Delete).
-  - **Real-Time Updates:** Optimistic updates for create, update, and delete operations.
+  - **Real-Time Updates:** Optimistic updates for create, update, and delete operations. -->
 
 - **Booking Management:**
   - **Booking List Table:** Room Name, User Name, Date & Time, Status (Confirmed/Unconfirmed).

@@ -20,7 +20,8 @@ export const slotApi = createApi({
       query: () => '/availability',
       providesTags: ["slots"],
     }),
-    createSlot: builder.mutation<ApiResponse<Slot>, Partial<Slot>>({
+    
+    createSlot: builder.mutation<ApiResponse<Slot>, { room: string; date: string; startTime: string; endTime: string }>({
       query: (slot) => ({
         url: '/',
         method: 'POST',
@@ -42,7 +43,8 @@ export const slotApi = createApi({
         method: 'DELETE',
       }),
       invalidatesTags: ["slots"],
-    })
+    }),
+
   })
 })
 

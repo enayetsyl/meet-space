@@ -16,6 +16,8 @@ import SlotsManagement from "../pages/admin/SlotsManagement";
 import Error404 from "../pages/public/Error404";
 import Booking from "../pages/public/Booking";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/public/Payment";
+import PaymentSuccess from "../components/pages/Payment/PaymentSuccess";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout", element: <Checkout/>
+      },
+      {
+        path: "/payment", element: <Payment/>
+      },
+      {
+        path: "/payment-success", element: <PaymentSuccess/>
       },
     ]
   },
