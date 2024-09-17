@@ -16,8 +16,8 @@ const MeetingRooms = () => {
 
 
   return (
-    <div className="px-5 md:px-20 bg-white pb-32">
-      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center py-20 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">
+    <div className="px-5 md:px-20  pb-32">
+      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center pb-20 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">
         Available Meeting Rooms
       </h1>
         <div className="grid grid-cols-1 md:grid-cols-2  gap-8">

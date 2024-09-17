@@ -1,11 +1,33 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { navItems } from "../../constant";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/features/authSlice";
+import { RootState } from "../../redux/store"; // Assuming this is where your store is defined
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  // Get authentication status and user role from the Redux store
+  const { user } = useSelector((state: RootState) => state.auth);
+
+  const handleLogout = () => {
+    // Clear the token from session storage
+    sessionStorage.removeItem("token");
+
+    // Dispatch the logout action to clear the user from the Redux store
+    dispatch(logout());
+
+    // Redirect to the login page or homepage after logout
+    navigate("/login");
+
+    // Optionally, show a logout success message
+    console.log("Logout successful");
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -16,10 +38,7 @@ const Navbar = () => {
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       closeMenu();
     }
   };
@@ -38,11 +57,11 @@ const Navbar = () => {
 
   return (
     <nav className=" bg-white md:bg-transparent h-20 md:h-28 relative z-50">
-      <div className="flex items-center  justify-between px-5  md:px-20 py-5">
+      <div className="flex items-center justify-between px-5 md:px-20 py-5">
         <div>
           <NavLink
             to="/"
-            className="text-black md:text-white text-3xl md:text-4xl font-bold"
+            className="text-[#00A8E8]  text-3xl md:text-4xl font-bold"
           >
             MeetSpace
           </NavLink>
@@ -53,14 +72,71 @@ const Navbar = () => {
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `text-white hover:text-customOrange ${
-                  isActive ? "text-customGreen font-bold" : ""
-                }`
+                `text-[#00A8E8] hover:text-customOrange ${isActive ? "text-customGreen font-bold" : ""}`
               }
             >
               {item.name}
             </NavLink>
           ))}
+
+          {/* Conditionally render links based on user role */}
+          {user?.role === "user" && (
+            <NavLink
+              to="/my-bookings"
+              className={({ isActive }) =>
+                `text-[#00A8E8]  hover:text-customOrange ${isActive ? "text-customGreen font-bold" : ""}`
+              }
+            >
+              My Bookings
+            </NavLink>
+          )}
+
+          {/* Conditionally render admin-specific routes */}
+          {user?.role === "admin" && (
+            <>
+              <NavLink
+                to="/dashboard/booking-management"
+                className={({ isActive }) =>
+                  `text-[#00A8E8]  hover:text-customOrange ${isActive ? "text-customGreen font-bold" : ""}`
+                }
+              >
+                Booking
+              </NavLink>
+              <NavLink
+                to="/dashboard/room-management"
+                className={({ isActive }) =>
+                  `text-[#00A8E8]  hover:text-customOrange ${isActive ? "text-customGreen font-bold" : ""}`
+                }
+              >
+                Room
+              </NavLink>
+              <NavLink
+                to="/dashboard/slot-management"
+                className={({ isActive }) =>
+                  `text-[#00A8E8]  hover:text-customOrange ${isActive ? "text-customGreen font-bold" : ""}`
+                }
+              >
+                Slot
+              </NavLink>
+            </>
+          )}
+
+          {/* Render logout button if user is authenticated */}
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="text-[#00A8E8]  hover:text-customOrange"
+            >
+              Logout
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+              className="text-[#00A8E8]  hover:text-customOrange"
+            >
+              Login
+            </NavLink>
+          )}
         </div>
 
         <div className="md:hidden pt-3">
@@ -70,11 +146,7 @@ const Navbar = () => {
             className="text-customOrange hover:text-customGreen "
           >
             <GiHamburgerMenu
-              className={
-                isOpen
-                  ? "h-6 w-6 text-customOrange"
-                  : "h-6 w-6 text-customGreen"
-              }
+              className={isOpen ? "h-6 w-6 text-customOrange" : "h-6 w-6 text-customGreen"}
             />
           </button>
         </div>
@@ -90,7 +162,7 @@ const Navbar = () => {
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `text-black hover:text-customOrange border-t border-gray-400 w-full  ${
+                `text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full  ${
                   isActive ? "text-customGreen font-bold" : ""
                 }`
               }
@@ -99,6 +171,63 @@ const Navbar = () => {
               {item.name}
             </NavLink>
           ))}
+
+          {/* Conditionally render links based on user role */}
+          {user?.role === "user" && (
+            <NavLink
+              to="/my-bookings"
+              className="text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full"
+              onClick={closeMenu}
+            >
+              My Bookings
+            </NavLink>
+          )}
+
+          {/* Conditionally render admin-specific routes */}
+          {user?.role === "admin" && (
+            <>
+              <NavLink
+                to="/dashboard/booking-management"
+                className="text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full"
+                onClick={closeMenu}
+              >
+                Booking
+              </NavLink>
+              <NavLink
+                to="/dashboard/room-management"
+                className="text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full"
+                onClick={closeMenu}
+              >
+                Room 
+              </NavLink>
+              <NavLink
+                to="/dashboard/slot-management"
+                className="text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full"
+                onClick={closeMenu}
+              >
+                Slot 
+              </NavLink>
+            </>
+          )}
+
+          {/* Render logout button if user is authenticated */}
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full text-start"
+          
+            >
+              Logout
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+              className="text-[#00A8E8]  hover:text-customOrange border-t border-gray-400 w-full"
+              onClick={closeMenu}
+            >
+              Login
+            </NavLink>
+          )}
         </div>
       )}
     </nav>

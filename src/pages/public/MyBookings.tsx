@@ -13,7 +13,8 @@ const MyBookings = () => {
   console.log('bookings', bookings)
 
   return (
-    <div className="px-5 md:px-20 bg-white pb-32">
+    <div className="px-5 md:px-20 bg-[#f5f5f5] pb-32 ">
+     
       <h1 className="text-3xl md:text-6xl font-bold uppercase text-center py-10 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">Welcome, {user?.name}</h1>
       <h3 className="text-center text-2xl font-bold py-5">Your Bookings</h3>
 

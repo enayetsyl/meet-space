@@ -106,12 +106,9 @@ const BookingManagement = () => {
       }
     }
 
-  console.log('bookings', bookings)
   return (
     <div className="p-5">
-      <h1 className="text-3xl font-bold mb-5">Booking Dashboard</h1>
-
-
+      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center pt-10 pb-20 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">Booking Dashboard</h1>
       {/* Booking List Table */}
       <div className="overflow-x-auto w-full">
         <table className="min-w-full bg-white rounded-lg shadow-lg overflow-x-auto">
@@ -145,10 +142,10 @@ const BookingManagement = () => {
                   </Button>
                   <Button
                     onClick={() => openRejectModal(booking)}
-                    className=" px-4 py-2  bg-customOrange hover:bg-customGreen transition"
+                    className=" text-white px-[19px] py-2  hover:bg-red-600 transition"
                     size="small"
                     type="button"
-                    variant="primary"
+                    variant="danger"
                   >
                     Reject
                   </Button>

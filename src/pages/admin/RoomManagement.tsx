@@ -158,7 +158,7 @@ const RoomManagement = () => {
 
   return (
     <div className="p-5">
-      <h1 className="text-3xl font-bold mb-5">Room Dashboard</h1>
+      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center  pb-20 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">Room Dashboard</h1>
 
       {/* Add Product Button */}
       <button

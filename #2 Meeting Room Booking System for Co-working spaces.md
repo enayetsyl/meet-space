@@ -12,9 +12,9 @@ Our platform is designed to provide a seamless and intuitive experience for user
 #### **Public Pages**
 
 **1. Homepage / Landing Page**
-<!-- - **Header Section / Navbar:**
+- **Header Section / Navbar:**
   - **Logo/System Name:** Positioned at the top left. Clicking redirects to the homepage.
-  - **Navigation Links:** Home, Meeting Rooms, About Us, Contact Us, Login/Register. -->
+  - **Navigation Links:** Home, Meeting Rooms, About Us, Contact Us, Login/Register.
   - **User Icon/Dropdown:** 
     - **For Authenticated Users:** My Bookings, Logout.
     - **For Admins:** Dashboard, Logout.
@@ -103,12 +103,12 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Date and Time Selection:** Calendar view (Allows users to choose a booking date), available time slots (Show available time slots for that selected date. (based on isBooked = false)).
   - **User Information Form:** Pre-filled with user details. -->
 
-**9. Confirmation and Payment / Checkout Page**
+<!-- **9. Confirmation and Payment / Checkout Page**
   
   - **Booking Summary:** Room name, date, time, cost, user info.
   - **Payment Selection Options:** Implement any payment system.
   - **Confirm Booking Button:** Finalize the booking.
-  - **Confirmation Modal:** Booking details and thank you message.
+  - **Confirmation Modal:** Booking details and thank you message. -->
 
 <!-- **10. My Bookings Page**
 - **Booking List:**
@@ -131,7 +131,7 @@ Our platform is designed to provide a seamless and intuitive experience for user
 
 - **Booking Management:**
   <!-- - **Booking List Table:** Room Name, User Name, Date & Time, Status (Confirmed/Unconfirmed). -->
-  - **Actions:** Approve/Reject Bookings, Delete Bookings with confirmation prompt.
+  <!-- - **Actions:** Approve/Reject Bookings, Delete Bookings with confirmation prompt. -->
 
 ---
 
@@ -143,12 +143,12 @@ Our platform is designed to provide a seamless and intuitive experience for user
 <!-- - **GitHub Contributions:** Minimum of 15 commits with meaningful progress. -->
 
 ### **Deliverables**
-- Fully functional frontend application integrated with the backend.
+<!-- - Fully functional frontend application integrated with the backend. -->
 - Responsive design for all pages.
 - User and Admin dashboards with described features.
-- Complete backend integration.
-- Clean, well-organized, and documented code.
-- Creative solutions to integration challenges.
+<!-- - Complete backend integration. -->
+<!-- - Clean, well-organized, and documented code. -->
+<!-- - Creative solutions to integration challenges. -->
 
 ### **References for Idea Generation**
 - **Inspiration Sites:**

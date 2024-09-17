@@ -16,7 +16,7 @@ import { useGetRoomsQuery } from "../../redux/api/roomApi";
 const SlotsManagement = () => {
   const { data, refetch } = useGetSlotsQuery();
   const slots: Slot[] = data?.data || [];
-
+  console.log('slots', slots)
   const { data: roomsData } = useGetRoomsQuery();
   const rooms: Room[] = roomsData?.data || [];
 
@@ -25,6 +25,7 @@ const SlotsManagement = () => {
   const [deleteSlot] = useDeleteSlotMutation();
 
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+
   const [newSlot, setNewSlot] = useState<{
     room: string;
     date: string;
@@ -166,8 +167,8 @@ const SlotsManagement = () => {
   };
 
   return (
-    <div className="p-5">
-      <h1 className="text-3xl font-bold mb-5">Slot Dashboard</h1>
+    <div className="px-5 md:px-20 pb-32">
+      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center pt-10 pb-20 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">Slot Dashboard</h1>
 
       {/* Add Slot Button */}
       <button

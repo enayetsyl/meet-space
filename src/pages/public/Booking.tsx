@@ -18,8 +18,10 @@ const Booking = () => {
 
   // State to manage the selected date and available time slots for that date
   const [selectedDate, setSelectedDate] = useState<string>("");
+
   const [availableSlots, setAvailableSlots] = useState<BookingType[]>([]);
 
+console.log('available slots', availableSlots)
   // Automatically set the first available date with available slots
   useEffect(() => {
     if (availableSlotsForBooking.length > 0) {
@@ -56,11 +58,11 @@ const Booking = () => {
 
   return (
     <div className="px-5 md:px-20 bg-white pb-32">
-      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center pb-20 pt-20 md:pt-0 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">
+      <h1 className="text-3xl md:text-6xl font-bold uppercase text-center pb-20  bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">
         Booking Page for {room.name}
       </h1>
 
-      <div className="flex justify-center items-center flex-col md:flex-row gap-10 md:gap-0 p-5">
+      <div className="flex justify-center items-center flex-col md:flex-row gap-10 md:gap-10 p-5">
         {/* Date and time selection */}
         <div className="flex-1 w-full md:w-1/2">
           <h2 className="text-2xl mb-5 text-customOrange">Booking Information</h2>
@@ -75,7 +77,7 @@ const Booking = () => {
           </div>
 
           {/* Display available time slots */}
-         <div className="flex justify-start items-start gap-5">
+         <div className="flex flex-col justify-start items-start md:flex-row gap-5">
            <h3 className="font-bold pt-5">Available Time Slots</h3>
           {availableSlots.length > 0 ? (
             <ul className="pt-5">

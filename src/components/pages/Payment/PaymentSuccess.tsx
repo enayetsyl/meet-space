@@ -100,15 +100,15 @@ const PaymentSuccess = () => {
        marginTop: '-112px', 
       }}
     >
-      <h1 className='text-center font-bold text-3xl py-5'>Thank You for Booking with Us!</h1>
-      <p className='pb-5 text-center font-bold'>Your booking has been created successfully.</p>
+      <h1 className='text-center font-bold text-3xl pb-5 pt-20'>Thank You for Booking with Us!</h1>
+      <p className='pb-10 text-center font-bold'>Your booking has been created successfully.</p>
       <div className="bg-[#f5f5f5] p-8">
         <p><strong>Room Name:</strong> {bookingData?.room?.name}</p>
         <p><strong>Event Date:</strong> {eventDate}</p>
         <p><strong>Start Time:</strong> {bookingData?.slots?.[0]?.startTime}</p>
         <p><strong>End Time:</strong> {bookingData?.slots?.[0]?.endTime}</p>
-        <p><strong>Confirmation Status:</strong> {bookingData?.isConfirmed}</p>
-        <p><strong>Booking Created At:</strong> {bookingCreatedAt}</p>
+        <p className='capitalize'><strong>Confirmation Status:</strong> {bookingData?.isConfirmed}</p>
+        <p ><strong>Booking Created At:</strong> {bookingCreatedAt}</p>
         <p><strong>Price:</strong> ${bookingData?.totalAmount}</p>
         {bookingData?.room?.roomNo && (
           <p><strong>Room No:</strong> {bookingData.room.roomNo}</p>

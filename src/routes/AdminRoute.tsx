@@ -1,9 +1,8 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { PrivateRouteProps } from '../types';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
+import { RootState } from "../redux/store";
 
-const PrivateRoute =  ({ children, role }: PrivateRouteProps)  => {
+const AdminRoute = ({ children }: { children: JSX.Element }) => {
   const token = sessionStorage.getItem('token');
   const location = useLocation();
   const user = useSelector((state: RootState) => state.auth.user);
@@ -13,11 +12,13 @@ const PrivateRoute =  ({ children, role }: PrivateRouteProps)  => {
     return <Navigate to={`/login?redirect=${location.pathname}`} />;
   }
 
-  if (role && user?.role !== role) {
+  // Check if the user is an admin
+  if (user?.role !== 'admin') {
     return <Navigate to="/unauthorized" />; // Or redirect to a "not authorized" page
   }
+
   // Otherwise, render the child components (i.e., the protected route)
   return children;
 };
 
-export default PrivateRoute;
+export default AdminRoute;

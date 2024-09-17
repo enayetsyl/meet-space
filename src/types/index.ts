@@ -18,12 +18,15 @@ export type Room = {
 
 export type Slot ={
   _id?: string;
-  room: string;
+  room: Room;
   date: string;
   startTime: string;
   endTime: string;
   isBooked?: boolean;
 }
+
+
+
 
 export type Booking = {
   _id?: string;
@@ -167,4 +170,9 @@ export type RejectBookingModalProps = {
   selectedBooking: BookingData | null;
   handleRejectBooking: (selectedBooking:BookingData) => void;
   setIsRejectBookingModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface PrivateRouteProps {
+  children: JSX.Element;
+  role?: string; // Optional role requirement
 }
