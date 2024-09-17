@@ -133,7 +133,7 @@ export type User = {
 export type BookingData = {
   createdAt: string;
   date: string;
-  isConfirmed: boolean;
+  isConfirmed: "unconfirmed" | "confirmed" | "canceled";
   isDelete: boolean;
   room: Room;
   slots: Slot[];
@@ -145,10 +145,26 @@ export type BookingData = {
 
 export type MyBooking = {
   date: string;
-  isConfirmed: boolean;
+  isConfirmed: "unconfirmed" | "confirmed" | "canceled";
   isDeleted: boolean;
   room: Room;
   slots: Slot[];
   totalAmount: number;
   _id: string;
+}
+
+export type DeleteBookingModalProps = {
+  selectedBooking: BookingData | null;
+  handleDeleteBooking: (selectedBooking:BookingData) => void;
+  setIsDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+export type ApproveBookingModalProps = {
+  selectedBooking: BookingData | null;
+  handleApproveBooking: (selectedBooking:BookingData) => void;
+  setIsApproveBookingModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+export type RejectBookingModalProps = {
+  selectedBooking: BookingData | null;
+  handleRejectBooking: (selectedBooking:BookingData) => void;
+  setIsRejectBookingModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }

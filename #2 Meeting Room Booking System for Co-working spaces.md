@@ -130,17 +130,17 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Real-Time Updates:** Optimistic updates for create, update, and delete operations. -->
 
 - **Booking Management:**
-  - **Booking List Table:** Room Name, User Name, Date & Time, Status (Confirmed/Unconfirmed).
+  <!-- - **Booking List Table:** Room Name, User Name, Date & Time, Status (Confirmed/Unconfirmed). -->
   - **Actions:** Approve/Reject Bookings, Delete Bookings with confirmation prompt.
 
 ---
 
 ### **Bonus Features**
 - **Debounce API Calls:** Implement search debouncing.
-- **Animations:** Micro-animations for interactive elements.
-- **Integrate Payment:** Secure payment processing using AmarPay/SSLCOMMERCE/Stripe.
+<!-- - **Animations:** Micro-animations for interactive elements.
+- **Integrate Payment:** Secure payment processing using AmarPay/SSLCOMMERCE/Stripe. -->
 - **Scroll to Top Button:** Implement a "Scroll to Top" button for easy navigation.
-- **GitHub Contributions:** Minimum of 15 commits with meaningful progress.
+<!-- - **GitHub Contributions:** Minimum of 15 commits with meaningful progress. -->
 
 ### **Deliverables**
 - Fully functional frontend application integrated with the backend.

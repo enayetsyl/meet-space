@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ApiResponse, Booking, MyBooking } from "../../types";
+import { ApiResponse, Booking, BookingData, MyBooking } from "../../types";
 
 
 export const bookingApi = createApi({
@@ -24,7 +24,7 @@ export const bookingApi = createApi({
       query: () => "/my-bookings",
       providesTags: ["bookings"],
     }),
-    getAllBookings: builder.query<ApiResponse<Booking[]>, void>({
+    getAllBookings: builder.query<ApiResponse<BookingData[]>, void>({
       query: () => "/",
       providesTags: ["bookings"],
     }),
@@ -36,7 +36,7 @@ export const bookingApi = createApi({
       }),
       invalidatesTags: ["bookings"],
     }),
-    updateBooking: builder.mutation<ApiResponse<Booking>, {id: string; updatedBooking: Partial<Booking>}>({
+    updateBooking: builder.mutation<ApiResponse<BookingData>, {id: string; updatedBooking: Partial<BookingData>}>({
       query:({id, updatedBooking}) => ({
         url: `/${id}`,
         method: "PUT",
