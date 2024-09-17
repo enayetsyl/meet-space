@@ -110,9 +110,9 @@ Our platform is designed to provide a seamless and intuitive experience for user
   - **Confirm Booking Button:** Finalize the booking.
   - **Confirmation Modal:** Booking details and thank you message.
 
-**10. My Bookings Page**
+<!-- **10. My Bookings Page**
 - **Booking List:**
-  - Display user all bookings with Room Name, Date & Time, and Status (Unconfirmed/Confirmed).
+  - Display user all bookings with Room Name, Date & Time, and Status (Unconfirmed/Confirmed). -->
 
 ---
 

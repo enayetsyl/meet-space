@@ -1,17 +1,16 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CheckoutForm from "../../components/pages/Payment/CheckoutForm";
 import { useEffect, useState } from "react";
 
 const Payment = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { slot, room, user } = location.state;
   console.log('slot', slot, 'room', room, 'user', user);
   const PUBLIC_KEY=`pk_test_51OHOq1BYRJK6WPifj3RVipWJ2F8EInOogAIklm33x1GCLhaImaRBmk5UFZUhyrF30W1CWMX9K74qkYgfOdARGWTP0007UxIyx4`
 
-  const SECRET_KEY =`pk_test_51OHOq1BYRJK6WPifj3RVipWJ2F8EInOogAIklm33x1GCLhaImaRBmk5UFZUhyrF30W1CWMX9K74qkYgfOdARGWTP0007UxIyx4`
+
   const stripePromise = loadStripe(PUBLIC_KEY)
 
   // Fetch the Payment Intent client secret from the backend
@@ -35,7 +34,7 @@ const Payment = () => {
     // Add appearance or other options if needed
   };
 
-  console.log('clientSecret', clientSecret);
+
   return (
     <div>
       {clientSecret && (

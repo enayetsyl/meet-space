@@ -49,6 +49,7 @@ const Booking = () => {
   };
 
   const handleCheckout = (slot:Slot) => {
+
     navigate('/checkout', { state: {  slot, room, user } })
   }
   

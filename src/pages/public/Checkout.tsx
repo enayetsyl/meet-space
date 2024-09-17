@@ -5,6 +5,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const { slot, room, user } = location.state;
 
+  console.log('slot', slot, 'room', room, 'user', user)
 
   const handlePayment = () => {
     navigate('/payment', { state: { slot, room, user } });

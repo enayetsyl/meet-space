@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import { BookingData } from '../../../types';
-
-
+import meeting1 from '../../../../public/meeting-1.jpg'
 
 const PaymentSuccess = () => {
   const [bookingCreated, setBookingCreated] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
 
   const location = useLocation();
@@ -89,7 +88,18 @@ const PaymentSuccess = () => {
     : '';
 
   return (
-    <div className="px-5 md:px-20 bg-white pb-32">
+    <div 
+      className="px-5 md:px-20 bg-white pb-32"
+      style={{
+        backgroundImage: `url(${meeting1})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh', 
+        paddingTop: '80px',
+       marginTop: '-112px', 
+      }}
+    >
       <h1 className='text-center font-bold text-3xl py-5'>Thank You for Booking with Us!</h1>
       <p className='pb-5 text-center font-bold'>Your booking has been created successfully.</p>
       <div className="bg-[#f5f5f5] p-8">
@@ -108,11 +118,10 @@ const PaymentSuccess = () => {
         <p><strong>Amenities:</strong> {bookingData?.room?.amenities?.join(', ')}</p>
         <p><strong>User Name:</strong> {bookingData?.user?.name}</p>
         <Link to="/">
-        <button className="bg-customOrange hover:bg-customGreen text-white font-semibold py-3 px-4  mt-5">
-Back to Home
-        </button>
+          <button className="bg-customOrange hover:bg-customGreen text-white font-semibold py-3 px-4  mt-5">
+            Back to Home
+          </button>
         </Link>
-
       </div>
     </div>
   );

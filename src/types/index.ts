@@ -18,7 +18,7 @@ export type Room = {
 
 export type Slot ={
   _id?: string;
-  room: Room;
+  room: string;
   date: string;
   startTime: string;
   endTime: string;
@@ -140,5 +140,15 @@ export type BookingData = {
   totalAmount: number;
   updatedAt: string;
   user: User;
+  _id: string;
+}
+
+export type MyBooking = {
+  date: string;
+  isConfirmed: boolean;
+  isDeleted: boolean;
+  room: Room;
+  slots: Slot[];
+  totalAmount: number;
   _id: string;
 }

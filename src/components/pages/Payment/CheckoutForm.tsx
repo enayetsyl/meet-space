@@ -1,12 +1,13 @@
 // CheckoutForm.jsx
 import React from 'react';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
+import { Room, Slot, User } from '../../../types';
 
-const CheckoutForm = ({ room, slot, user }) => {
+const CheckoutForm = ({ room, slot, user }:{room:Room, slot:Slot, user:User}) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [message, setMessage] = React.useState(null);
+  const [message, setMessage] = React.useState<string | null>(null);
   const [isProcessing, setIsProcessing] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,7 +32,8 @@ const CheckoutForm = ({ room, slot, user }) => {
     });
 
     if (error) {
-      setMessage(error.message);
+      setMessage(error.message ?? 'An unknown error occurred.');
+
     } else {
       setMessage('An unexpected error occurred.');
     }
