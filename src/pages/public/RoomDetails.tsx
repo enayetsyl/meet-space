@@ -17,7 +17,11 @@ const RoomDetails = () => {
     return meetingImages[randomIndex].image;
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="px-5 md:px-20 bg-white pb-32">
+  <h1 className="text-3xl md:text-6xl font-bold uppercase text-center pb-20  md:pt-0 bg-gradient-to-r from-customOrange to-customGreen bg-clip-text text-transparent leading-tight md:leading-snug animate-float-from-top">
+  Loading
+ </h1>
+ </div>;
   if (error || !roomResponse) return <div>Error loading room details</div>;
 
   const room = roomResponse.data;
