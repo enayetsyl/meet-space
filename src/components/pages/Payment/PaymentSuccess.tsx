@@ -21,7 +21,7 @@ const PaymentSuccess = () => {
     const token = sessionStorage.getItem('token');
     // Confirm payment status
     if (paymentIntentId) {
-      fetch('http://localhost:5000/api/payment/confirm-payment', {
+      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/payment/confirm-payment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ paymentIntentId }),
@@ -33,7 +33,7 @@ const PaymentSuccess = () => {
             console.log('Payment succeeded');
             // Payment is successful, create booking
             const response = await fetch(
-              'http://localhost:5000/api/bookings',
+              `${import.meta.env.VITE_API_BASE_URL}/api/bookings`,
               {
                 method: 'POST',
                 headers: {

@@ -4,7 +4,13 @@ import { Room } from "../../../types";
 import RoomCard from "../../shared/RoomCard";
 
 const FeaturedRooms = () => {
-  const { data } = useGetRoomsQuery();
+  const { data } = useGetRoomsQuery({
+    name: "",
+    capacity: "",
+    maxPrice: "",
+    sortBy: "",
+    sortOrder: "",
+  });
   const rooms: Room[] = data?.data || [];
 
   // Function to select a random image

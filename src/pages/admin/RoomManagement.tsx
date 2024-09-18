@@ -13,7 +13,13 @@ import EditRoomModal from "../../components/admin/RoomManagement/EditRoomModal";
 import DeleteRoomModal from "../../components/admin/RoomManagement/DeleteRoomModal";
 
 const RoomManagement = () => {
-  const { data, refetch } = useGetRoomsQuery();
+  const { data, refetch } = useGetRoomsQuery({
+    name: "",
+    capacity: "",
+    maxPrice: "",
+    sortBy: "",
+    sortOrder: "",
+  });
   const rooms: Room[] = data?.data || [];
 
   

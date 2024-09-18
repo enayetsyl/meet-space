@@ -22,6 +22,7 @@ const RoomDetails = () => {
 
   const room = roomResponse.data;
 
+  console.log('room', room)
    // Function to handle booking button click
    const handleBookNow = () => {
     navigate('/booking', { state: { room } }); // Navigate to /booking and pass room data as state

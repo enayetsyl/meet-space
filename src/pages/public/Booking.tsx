@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "../../redux/store";
 import { useGetAvailableBookingsQuery } from "../../redux/api/bookingApi";
-import { Booking as BookingType, Slot } from "../../types";
+import {  Slot } from "../../types";
 import { useEffect, useState } from "react";
 
 const Booking = () => {
@@ -10,18 +10,20 @@ const Booking = () => {
   const navigate = useNavigate();
   const { room } = location.state;
   const { data } = useGetAvailableBookingsQuery(room._id);
-  const availableSlotsForBooking: BookingType[] = data?.data || [];
+  const availableSlotsForBooking = data?.data || [];
   // Access the user from the Redux store
   const user = useSelector((state: RootState) => state.auth.user);
 
-  
+  console.log('available slots for booking', availableSlotsForBooking)
 
   // State to manage the selected date and available time slots for that date
   const [selectedDate, setSelectedDate] = useState<string>("");
 
-  const [availableSlots, setAvailableSlots] = useState<BookingType[]>([]);
+  const [availableSlots, setAvailableSlots] = useState<Slot[]>([]);
 
-console.log('available slots', availableSlots)
+  console.log('available slots ', availableSlots)
+
+
   // Automatically set the first available date with available slots
   useEffect(() => {
     if (availableSlotsForBooking.length > 0) {

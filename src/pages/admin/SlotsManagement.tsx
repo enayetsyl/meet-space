@@ -17,7 +17,13 @@ const SlotsManagement = () => {
   const { data, refetch } = useGetSlotsQuery();
   const slots: Slot[] = data?.data || [];
   console.log('slots', slots)
-  const { data: roomsData } = useGetRoomsQuery();
+  const { data: roomsData } = useGetRoomsQuery({
+    name: "",
+    capacity: "",
+    maxPrice: "",
+    sortBy: "",
+    sortOrder: "",
+  });
   const rooms: Room[] = roomsData?.data || [];
 
   const [createSlot] = useCreateSlotMutation();

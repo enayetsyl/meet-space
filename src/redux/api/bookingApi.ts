@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ApiResponse, Booking, BookingData, MyBooking } from "../../types";
+import { ApiResponse, Booking, BookingData, MyBooking, Slot } from "../../types";
 
 
 export const bookingApi = createApi({
@@ -16,7 +16,7 @@ export const bookingApi = createApi({
   }),
   tagTypes: ["bookings"],
   endpoints: (builder) => ({
-    getAvailableBookings: builder.query<ApiResponse<Booking[]>,void>({
+    getAvailableBookings: builder.query<ApiResponse<Slot[]>,void>({
       query:(roomId) =>`/available-for-booking/${roomId}`,
       providesTags: ["bookings"],
     }),

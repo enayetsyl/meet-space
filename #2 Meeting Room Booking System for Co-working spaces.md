@@ -139,13 +139,13 @@ Our platform is designed to provide a seamless and intuitive experience for user
 <!-- - **Debounce API Calls:** Implement search debouncing. -->
 <!-- - **Animations:** Micro-animations for interactive elements.
 - **Integrate Payment:** Secure payment processing using AmarPay/SSLCOMMERCE/Stripe. -->
-- **Scroll to Top Button:** Implement a "Scroll to Top" button for easy navigation.
+<!-- - **Scroll to Top Button:** Implement a "Scroll to Top" button for easy navigation. -->
 <!-- - **GitHub Contributions:** Minimum of 15 commits with meaningful progress. -->
 
 ### **Deliverables**
 <!-- - Fully functional frontend application integrated with the backend. -->
-- Responsive design for all pages.
-- User and Admin dashboards with described features.
+<!-- - Responsive design for all pages.
+- User and Admin dashboards with described features. -->
 <!-- - Complete backend integration. -->
 <!-- - Clean, well-organized, and documented code. -->
 <!-- - Creative solutions to integration challenges. -->

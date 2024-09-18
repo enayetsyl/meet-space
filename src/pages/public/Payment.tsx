@@ -18,7 +18,7 @@ const Payment = () => {
 
   useEffect(() => {
     // Replace with your backend URL
-    fetch('http://localhost:5000/api/payment/payment-intent', {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/payment/payment-intent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: room.pricePerSlot * 100, currency: 'usd'}),
