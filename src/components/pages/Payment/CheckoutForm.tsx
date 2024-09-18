@@ -21,7 +21,7 @@ const CheckoutForm = ({ room, slot, user }:{room:Room, slot:Slot, user:User}) =>
 
     
 
-    const returnUrl = `http://localhost:5173/payment-success?roomId=${room._id}&slotId=${slot._id}&userId=${user._id}`;
+    const returnUrl = `https://meet-space-theta.vercel.app/payment-success?roomId=${room._id}&slotId=${slot._id}&userId=${user._id}`;
 
     const { error } = await stripe.confirmPayment({
       elements,
