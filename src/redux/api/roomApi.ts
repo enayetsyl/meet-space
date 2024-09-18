@@ -15,9 +15,12 @@ export const roomApi = createApi({
   }),
   tagTypes: ['Rooms'],
   endpoints: (builder) => ({
-    getRooms: builder.query<ApiResponse<Room[]>, void>({
-      query: () => '/',
-      providesTags: ['Rooms'],
+    getRooms: builder.query<ApiResponse<Room[]>, any>({
+      query: (params) => {
+        const queryString = new URLSearchParams(params).toString();
+        return `/?${queryString}`;
+      },
+      providesTags: ["Rooms"],
     }),
     getRoomById: builder.query<ApiResponse<Room>, string>({
       query: (id) => `/${id}`,

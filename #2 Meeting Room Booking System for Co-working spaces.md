@@ -10,14 +10,14 @@ Our platform is designed to provide a seamless and intuitive experience for user
 
 ---
 #### **Public Pages**
-
+<!-- 
 **1. Homepage / Landing Page**
 - **Header Section / Navbar:**
   - **Logo/System Name:** Positioned at the top left. Clicking redirects to the homepage.
   - **Navigation Links:** Home, Meeting Rooms, About Us, Contact Us, Login/Register.
   - **User Icon/Dropdown:** 
     - **For Authenticated Users:** My Bookings, Logout.
-    - **For Admins:** Dashboard, Logout.
+    - **For Admins:** Dashboard, Logout. -->
 
 <!-- - **Hero Section:**
   - **Visual Appeal:** Large banner image or video of a modern workspace.
@@ -83,12 +83,12 @@ Our platform is designed to provide a seamless and intuitive experience for user
 **6. Meeting Rooms Page**
 - **Room Listings:**
   <!-- - **Card View Display:** Image, Room Name, Capacity, Price Per Slot, "See Details" Button. -->
-  - **Search Functionality:**
+  <!-- - **Search Functionality:**
     - **Search Bar:** Search by room name or keyword.
     - **Filtering Options:** Capacity, Price.
     - **Sort Options:** By Price Per Slot (ascending, descending).
     - **Clear Filter Button:** Resets all filters.
-    - **Pagination:** If needed, depending on the project scope.
+    - **Pagination:** If needed, depending on the project scope. -->
 
 ---
 
@@ -136,7 +136,7 @@ Our platform is designed to provide a seamless and intuitive experience for user
 ---
 
 ### **Bonus Features**
-- **Debounce API Calls:** Implement search debouncing.
+<!-- - **Debounce API Calls:** Implement search debouncing. -->
 <!-- - **Animations:** Micro-animations for interactive elements.
 - **Integrate Payment:** Secure payment processing using AmarPay/SSLCOMMERCE/Stripe. -->
 - **Scroll to Top Button:** Implement a "Scroll to Top" button for easy navigation.
@@ -150,10 +150,10 @@ Our platform is designed to provide a seamless and intuitive experience for user
 <!-- - Clean, well-organized, and documented code. -->
 <!-- - Creative solutions to integration challenges. -->
 
-### **References for Idea Generation**
+<!-- ### **References for Idea Generation**
 - **Inspiration Sites:**
   - [Booking.com](https://www.booking.com/)
-  - [Convene](https://www.convene.com/)
+  - [Convene](https://www.convene.com/) -->
 
 
 **[N.B: If backend updates are needed for Assignment-3 to meet these requirements, please adjust as necessary.]**

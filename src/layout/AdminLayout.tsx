@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/shared/Navbar"
 import meeting2 from "../../public/meeting-11.jpg"
+import ScrollToTopButton from "../components/shared/ScrollToTop"
 
 const AdminLayout = () => {
   return (
@@ -17,6 +18,7 @@ const AdminLayout = () => {
     }}>
       <Navbar/>
       <Outlet />
+      <ScrollToTopButton/>
     </div>
   )
 }
